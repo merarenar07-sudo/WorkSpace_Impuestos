@@ -1,0 +1,1724 @@
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Impuestos — Nueva Empresa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#D7E2E7;--s:#FFF;--s1:#EEF0F2;--ink:#16191D;--i2:#555B62;--i3:#8A9097;
+  --sb-bg:#A9E1DA;--tsb-bg:#D6F3EF;
+  --br:#E2E5E8;--brs:#CDD2D7;--ac:#146B5E;--acb:#E1F0EC;--acs:#4A9488;
+  --p:#6B7178;--pb:#EEF0F2;--w:#B5760A;--wb:#FBF1DC;--g:#2E7D4F;--gb:#E5F1E9;
+  --r:#B23A3A;--rb:#FBE9E7;--rad:9px;--mono:ui-monospace,SFMono-Regular,Menlo,monospace;}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select,textarea,th,td{font-family:inherit}
+button{cursor:pointer}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+::placeholder{color:var(--i3)}
+.app{display:flex;min-height:100vh}
+.sb{width:210px;flex-shrink:0;background:var(--sb-bg);border-right:1px solid var(--br);padding:16px 10px;display:flex;flex-direction:column;gap:3px}
+.cnt{flex:1;min-width:0}
+.ni{display:flex;align-items:center;gap:9px;width:100%;text-align:left;background:transparent;border:none;border-radius:var(--rad);padding:8px 10px;font-size:13px;color:var(--i2);font-weight:500}
+.ni:hover{background:var(--s1)}
+.ni.on{background:var(--acb);color:var(--ac)}
+.tsb{width:188px;flex-shrink:0;background:var(--tsb-bg);border-right:1px solid var(--br);padding:12px 8px;display:flex;flex-direction:column;gap:2px}
+.tni{display:flex;align-items:center;gap:7px;width:100%;text-align:left;background:transparent;border:none;border-radius:6px;padding:7px 9px;font-size:12px;color:var(--i2);font-weight:500}
+.tni:hover{background:var(--s1)}
+.tni.on{background:var(--acb);color:var(--ac);font-weight:600}
+.drop-active{border-color:var(--ac)!important;background:var(--acb)!important}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal{background:var(--s);border-radius:14px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.tbl th{background:var(--s1);padding:8px 10px;text-align:left;font-weight:600;color:var(--i2);font-size:11px;text-transform:uppercase;letter-spacing:.4px;position:sticky;top:0;z-index:1}
+.tbl td{padding:8px 10px;border-bottom:1px solid var(--br);vertical-align:middle}
+.tbl tr:hover td{background:#F8F9FA}
+.tbl .num{text-align:right;font-family:var(--mono)}
+.tbl .dim{color:var(--i3)}
+.badge{display:inline-flex;align-items:center;font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:12px;white-space:nowrap}
+.bd-g{background:var(--gb);color:var(--g)}
+.bd-r{background:var(--rb);color:var(--r)}
+.bd-w{background:var(--wb);color:var(--w)}
+.bd-p{background:var(--pb);color:var(--p)}
+.bd-b{background:var(--acb);color:var(--ac)}
+.card{background:var(--s);border:1px solid var(--br);border-radius:12px;padding:16px}
+.inp{width:100%;padding:8px 10px;border-radius:var(--rad);border:1px solid var(--br);font-size:13px;background:var(--s);color:var(--ink)}
+.btn-p{background:var(--ac);color:#fff;border:none;border-radius:var(--rad);padding:8px 14px;font-size:13px;font-weight:600}
+.btn-g{background:var(--s);color:var(--i2);border:1px solid var(--brs);border-radius:var(--rad);padding:8px 14px;font-size:13px;font-weight:500}
+.btn-r{background:var(--rb);color:var(--r);border:none;border-radius:var(--rad);padding:6px 10px;font-size:12px}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:18px}
+.kpi{background:var(--s);border:1px solid var(--br);border-radius:10px;padding:13px 14px}
+.kpi p:first-child{font-size:10.5px;color:var(--i3);font-weight:500;margin-bottom:4px}
+.kpi p:last-child{font-size:19px;font-weight:700;font-family:var(--mono);color:var(--ac)}
+.sec-hdr{margin-bottom:16px}
+.sec-hdr h3{font-size:18px;font-weight:600;margin-bottom:2px}
+.sec-hdr p{font-size:12.5px;color:var(--i2)}
+.ph2-box{text-align:center;padding:48px 24px;max-width:440px;margin:0 auto}
+.ph2-box .icon{font-size:36px;margin-bottom:12px}
+.ph2-box h4{font-size:16px;font-weight:600;margin-bottom:6px}
+.ph2-box p{font-size:13px;color:var(--i2);line-height:1.6}
+.ovr{overflow-x:auto;border-radius:10px;border:1px solid var(--br)}
+@media(max-width:700px){.app{flex-direction:column}.sb{width:auto;flex-direction:row;flex-wrap:wrap;border-right:none;border-bottom:1px solid var(--br);padding:10px}.ni{width:auto}}
+</style>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script type="text/babel" data-presets="react">
+const {useState,useEffect,useRef,useMemo,useContext,createContext,useCallback}=React;
+
+/* ── SUPABASE ── */
+/* Reemplaza estos dos valores con los de tu proyecto: Settings → API en supabase.com */
+const SUPABASE_URL='https://yflpmjzdsnotccbjpazi.supabase.co';
+const SUPABASE_ANON_KEY='sb_publishable_7EK7d3pc7W71ln7tdgjVGA_4hGWTB5B';
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+
+/* ── SVG ICONS ── */
+const IC={home:"M3 12l9-9 9 9M5 10v10h5v-6h4v6h5V10",list:"M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01",
+  tax:"M8 3h8a2 2 0 012 2v15l-3-2-2 2-2-2-2 2-3-2V5a2 2 0 012-2zM9 9h6M9 13h4",
+  invoice:"M7 3h10a2 2 0 012 2v15l-2.5-1.5L14 20l-2-1.5L10 20l-2.5-1.5L5 20V5a2 2 0 012-2zM9 8h6M9 12h6",
+  bank:"M4 8h16M4 8l8-4 8 4M6 8v9M10 8v9M14 8v9M18 8v9M3 20h18",
+  mail:"M3 6h18v12H3zM3 6l9 7 9-7",
+  plus:"M12 5v14M5 12h14",trash:"M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6",
+  edit:"M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z",
+  upload:"M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12",
+  down:"M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3",
+};
+function Ic({n,sz=16}){return(<svg width={sz} height={sz} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={IC[n]}/></svg>);}
+
+/* ── STORAGE (Supabase real, una fila por usuario+llave, protegida por RLS) ── */
+async function sg(k){
+  const {data:{user}}=await sb.auth.getUser();
+  if(!user)return null;
+  const {data,error}=await sb.from('tax_data').select('value').eq('user_id',user.id).eq('key',k).maybeSingle();
+  if(error||!data)return null;
+  return data.value;
+}
+async function sv(k,v){
+  const {data:{user}}=await sb.auth.getUser();
+  if(!user)return;
+  await sb.from('tax_data').upsert({user_id:user.id,key:k,value:v,updated_at:new Date().toISOString()},{onConflict:'user_id,key'});
+}
+async function sd(k){
+  const {data:{user}}=await sb.auth.getUser();
+  if(!user)return;
+  await sb.from('tax_data').delete().eq('user_id',user.id).eq('key',k);
+}
+
+/* ── FISCAL ENGINE ── */
+const MESES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const TAX_DEF={coef:0.0979,coefEneFeb:0.3446,isrRate:0.30,ivaRate:0.16,retISR:0.10,retIVA:2/3*0.16};
+const TIPOS={
+  SAT:{label:'SAT',iva:false,retISR:false,retIVA:false},
+  SERV_PROF:{label:'Servicio Profesional',iva:true,retISR:true,retIVA:true},
+  ARRENDAMIENTO:{label:'Arrendamiento',iva:true,retISR:true,retIVA:true},
+  TRASPASO:{label:'Traspaso',iva:false,retISR:false,retIVA:false},
+  PRESTAMO:{label:'Préstamo',iva:false,retISR:false,retIVA:false},
+  NOMINA:{label:'Nómina',iva:false,retISR:false,retIVA:false},
+  GASTO_ADM:{label:'Gasto Administrativo',iva:true,retISR:false,retIVA:false},
+  COMPRA:{label:'Compra',iva:true,retISR:false,retIVA:false},
+  OTRO:{label:'Otro',iva:false,retISR:false,retIVA:false},
+};
+const num=v=>parseFloat(v)||0;
+const mxn=n=>Math.round(n||0).toLocaleString('es-MX',{maximumFractionDigits:0});
+const getM=f=>{if(!f)return -1;const iso=String(f).match(/^(\d{4})-(\d{2})-(\d{2})/);if(iso)return parseInt(iso[2],10)-1;const d=new Date(f);return isNaN(d)?-1:d.getMonth();};
+const uid=()=>`${Date.now()}${Math.random().toString(36).slice(2,6)}`;
+const dupKey=r=>`${(r.fecha||'').slice(0,10)}|${(r.rfc||'').trim().toUpperCase()}|${num(r.total).toFixed(2)}`;
+const bankDupKey=r=>`${(r.fecha||'').slice(0,10)}|${num(r.retiros).toFixed(2)}|${num(r.depositos).toFixed(2)}`;
+const xlsDate=v=>{
+  if(v==null||v==='')return '';
+  if(typeof v==='number'){const d=new Date(Date.UTC(1899,11,30)+v*86400000);return d.toISOString().slice(0,10);}
+  if(v instanceof Date)return v.toISOString().slice(0,10);
+  const s=String(v).trim();
+  const iso=s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if(iso)return iso[0];
+  const d=new Date(s);
+  return isNaN(d)?s:d.toISOString().slice(0,10);
+};
+
+function computeFiscal(ing,eg,cfg={},banco=[]){
+  const c={...TAX_DEF,...cfg};
+  const ingAC=ing.filter(x=>isConciliado(x,'ingreso',banco));
+  const egAC=eg.filter(x=>isConciliado(x,'egreso',banco));
+  let isrAcum=0;
+  const isrMeses=MESES.map((mes,i)=>{
+    const ingNom=ingAC.filter(x=>getM(x.fecha)===i).reduce((s,x)=>s+num(x.subtotal),0);
+    const ingA=ingAC.filter(x=>getM(x.fecha)>=0&&getM(x.fecha)<=i).reduce((s,x)=>s+num(x.subtotal),0);
+    const coef=i<2?c.coefEneFeb:c.coef;
+    const util=ingA*coef;
+    const isrP=util*c.isrRate;
+    const ppA=isrAcum;
+    const isrM=Math.max(0,isrP-isrAcum);
+    if(isrM>0)isrAcum+=isrM;
+    return{mes,i,ingNom,ingA,coef,util,isrP,ppA,isrM};
+  });
+  const ivaAcredArr=cfg.ivaAcred||[];
+  const ivaMeses=MESES.map((mes,i)=>{
+    const ivaCaus=ingAC.filter(x=>getM(x.fecha)===i).reduce((s,x)=>s+num(x.iva),0);
+    const ivaAcr=egAC.filter(e=>getM(e.fecha)===i&&TIPOS[e.tipo]?.iva).reduce((s,e)=>s+num(e.iva),0);
+    const retH=egAC.filter(e=>getM(e.fecha)===i&&TIPOS[e.tipo]?.retIVA).reduce((s,e)=>s+num(e.retIVA),0);
+    // Otras cantidades a cargo = IVA retenido propio; a favor = mismo (netean). Acreditamiento manual = saldo a favor periodos anteriores
+    const acredSF=num(ivaAcredArr[i]);
+    const cantidadCargo=ivaCaus-ivaAcr; // 133-137 (otras a cargo/favor netean)
+    const aPagar=Math.max(0,cantidadCargo-acredSF);
+    return{mes,i,ivaCaus,ivaAcr,retH,acredSF,cantidadCargo,neto:cantidadCargo,aPagar,sfN:Math.max(0,acredSF-cantidadCargo)};
+  });
+  const retISRr=egAC.filter(e=>TIPOS[e.tipo]?.retISR).sort((a,b)=>new Date(a.fecha)-new Date(b.fecha));
+  const retIVAr=egAC.filter(e=>TIPOS[e.tipo]?.retIVA).sort((a,b)=>new Date(a.fecha)-new Date(b.fecha));
+  const dash={
+    isrTotal:isrMeses.reduce((s,m)=>s+m.isrM,0),
+    ivaTotal:ivaMeses.reduce((s,m)=>s+m.aPagar,0),
+    ivaCaus:ivaMeses.reduce((s,m)=>s+m.ivaCaus,0),
+    ivaAcr:ivaMeses.reduce((s,m)=>s+m.ivaAcr,0),
+    retISR:retISRr.reduce((s,r)=>s+num(r.retISR),0),
+    retIVA:retIVAr.reduce((s,r)=>s+num(r.retIVA),0),
+    sfIVA:ivaMeses.reduce((s,m)=>s+m.sfN,0),
+  };
+  dash.total=dash.isrTotal+dash.ivaTotal+dash.retISR+dash.retIVA;
+  return{isrMeses,ivaMeses,retISRr,retIVAr,dash};
+}
+
+/* ── ISR VERTICAL (P.P. ISR — formato SAT, replica hoja "P.P. ISR" del Excel) ── */
+const ISR_ROWS=[
+  {row:7,  label:'Suma De Ingresos Nominales De Meses Anteriores Del Ejercicio', key:'r7'},
+  {row:8,  label:'Ingresos x enajenación de bienes', key:'r8', edit:'enajBienes', annual:true},
+  {row:9,  label:'Ingresos x prestación de servicios', key:'r9', edit:'prestServ', annual:true},
+  {row:10, label:'Ingresos x uso o goce temporal de bienes', key:'r10', annual:true},
+  {row:11, label:'Anticipos de clientes', key:'r11', edit:'anticipCli', annual:true},
+  {row:12, label:'Intereses devengados a favor', key:'r12', annual:true},
+  {row:13, label:'Utilidad cambiaria', key:'r13', edit:'utilCambiaria', annual:true},
+  {row:14, label:'Ganancia en enajenación de activos fijos', key:'r14', edit:'gananciaEnaj', annual:true},
+  {row:15, label:'Otros ingresos acumulables', key:'r15', edit:'otrosIngAcum', annual:true},
+  {row:16, label:'Ingresos Nominales Del Mes Que Declara', key:'r16', annual:true, bold:true},
+  {row:17, label:'Total De Ingresos Nominales', key:'r17', bold:true},
+  {row:18, label:'Coeficiente De Utilidad', key:'r18', decimal:true},
+  {row:19, label:'Utilidad Fiscal Para Pago Provisional', key:'r19', bold:true},
+  {row:21, label:'Participación de los Trabajadores en las Utilidades (Correspondiente al mes)', key:'r21', edit:'ptuMes', annual:true},
+  {row:22, label:'Participación de los Trabajadores en las Utilidades (A disminuir de la UF)', key:'r22'},
+  {row:25, label:'Anticipos Y Rendimientos Distribuidos En El Periodo', key:'r25', edit:'anticipRend', annual:true},
+  {row:26, label:'Anticipos Y Rendimientos Distribuidos En El Periodo (Acumulado)', key:'r26'},
+  {row:29, label:'Remanente Pérdidas Fiscales De Ejercicios Anteriores Pendientes De Aplicar', key:'r29', edit:'remPerdidas', annual:true},
+  {row:30, label:'Pérdidas Fiscales De Ejercicios Anteriores Pendientes De Aplicar', key:'r30'},
+  {row:32, label:'Estímulo Fiscal Por Deducción Inmediata', key:'r32', edit:'estimDedInmediata'},
+  {row:34, label:'Inventario Acumulable', key:'r34', edit:'inventarioAcum'},
+  {row:36, label:'Deducción Adicional Del Fomento Al Primer Empleo', key:'r36', edit:'dedAdicPrimerEmpleo'},
+  {row:38, label:'Base Gravable Del Pago Provisional', key:'r38', bold:true},
+  {row:39, label:'Tasa De ISR Aplicable', key:'r39', percentFmt:true, muted:true},
+  {row:40, label:'ISR Causado', key:'r40', bold:true},
+  {row:41, label:'Estímulos acreditables', key:'r41', edit:'estimAcreditables'},
+  {row:42, label:'Reducciones', key:'r42', edit:'reducciones'},
+  {row:43, label:'Impuesto Del Periodo', key:'r43', bold:true},
+  {row:44, label:'Pagos Provisionales Efectuados Con Anterioridad', key:'r44', bold:true},
+  {row:46, label:'Impuesto Retenido En El Mes', key:'r46'},
+  {row:47, label:'Impuesto Retenido', key:'r47'},
+  {row:49, label:'Otras Cantidades A Cargo Del Contribuyente', key:'r49', edit:'otrasCargo'},
+  {row:50, label:'Otras Cantidades A Favor Del Contribuyente', key:'r50', edit:'otrasFavor'},
+  {row:51, label:'Diferencia A Cargo', key:'r51', bold:true},
+  {row:53, label:'IEPS Acreditable De Alcohol Desnaturalizado De Prod Distintos De Beb Alcohólicas', key:'r53', edit:'iepsAlcohol'},
+  {row:54, label:'Impuesto Correspondiente A La Participación Consolidable', key:'r54', edit:'impConsolidable'},
+  {row:55, label:'Porcentaje De Participación Consolidable', key:'r55', edit:'pctConsolidable'},
+  {row:56, label:'Impuesto A Cargo', key:'r56', bold:true},
+  {row:58, label:'A Cargo', key:'r58', bold:true},
+  {row:60, label:'Parte Actualizada', key:'r60', edit:'parteActualizada'},
+  {row:61, label:'Recargos', key:'r61', edit:'recargos'},
+  {row:62, label:'Multa Por Corrección', key:'r62', edit:'multaCorreccion'},
+  {row:64, label:'Total De Contribuciones', key:'r64', bold:true, hl:true},
+  {row:66, label:'Crédito al Salario', key:'r66', edit:'credSalario'},
+  {row:68, label:'Subsidio Para El Empleo', key:'r68', edit:'subsidioEmpleo'},
+  {row:70, label:'Impuesto A Los Depósitos En Efectivo Acreditable', key:'r70', edit:'ideAcreditable'},
+  {row:72, label:'Compensaciones', key:'r72', edit:'compensaciones'},
+  {row:74, label:'Crédito IEPS Diesel Sector Primario Y Minero', key:'r74', edit:'iepsDieselPrimario'},
+  {row:76, label:'Diesel Automotriz Para Transporte', key:'r76', edit:'dieselAutomotriz'},
+  {row:78, label:'Uso De Infraestructura Carretera De Cuota', key:'r78', edit:'infraCarretera'},
+  {row:80, label:'Otros Estímulos', key:'r80', edit:'otrosEstimulos'},
+  {row:82, label:'Acreditamiento Sorteos', key:'r82', edit:'acredSorteos'},
+  {row:84, label:'Diesel Marino', key:'r84', edit:'dieselMarino'},
+  {row:86, label:'Total De Aplicaciones', key:'r86', bold:true},
+  {row:88, label:'Fecha Del Pago Realizado Con Anterioridad', key:'r88', edit:'fechaPagoAnt', isDate:true},
+  {row:89, label:'Monto Pagado Con Anterioridad', key:'r89', edit:'montoPagadoAnt'},
+  {row:91, label:'Cantidad A Pagar', key:'r91', bold:true, hl:true},
+];
+function computeISRVertical(ing,inversion,cfg,isrAdj,banco){
+  const ingAC=ing.filter(x=>isConciliado(x,'ingreso',banco));
+  const adjAt=(i,k)=>num((isrAdj[i]||{})[k]);
+  let prevNom=0,maxPer=0,accPTU=0,accAnt=0,accPerd=0,accRet=0;
+  const months=MESES.map((mes,i)=>{
+    const r8=adjAt(i,'enajBienes'),r9=adjAt(i,'prestServ');
+    const r10=ingAC.filter(x=>getM(x.fecha)===i).reduce((s,x)=>s+num(x.subtotal),0);
+    const r11=adjAt(i,'anticipCli');
+    const r12=inversion.filter(x=>getM(x.fecha)===i).reduce((s,x)=>s+num(x.rendimiento),0);
+    const r13=adjAt(i,'utilCambiaria'),r14=adjAt(i,'gananciaEnaj'),r15=adjAt(i,'otrosIngAcum');
+    const r16=r8+r9+r10+r11+r12+r13+r14+r15;
+    const r7=prevNom, r17=r7+r16;
+    const r18=i<2?cfg.coefEneFeb:cfg.coef;
+    const r19=r17*r18;
+    const r21=adjAt(i,'ptuMes'); const r22=accPTU+r21;
+    const r25=adjAt(i,'anticipRend'); const r26=accAnt+r25;
+    const r29=adjAt(i,'remPerdidas'); const r30=accPerd+r29;
+    const r32=adjAt(i,'estimDedInmediata'),r34=adjAt(i,'inventarioAcum'),r36=adjAt(i,'dedAdicPrimerEmpleo');
+    const r38=r19-r22-r26-r30-r32-r34-r36;
+    const r39=cfg.isrRate;
+    const r40=r38*r39;
+    const r41=adjAt(i,'estimAcreditables'),r42=adjAt(i,'reducciones');
+    const r43=r40-r41-r42;
+    const r44=maxPer;
+    const r46=inversion.filter(x=>getM(x.fecha)===i).reduce((s,x)=>s+num(x.isrRetenido),0);
+    const r47=accRet+r46;
+    const r49=adjAt(i,'otrasCargo'),r50=adjAt(i,'otrasFavor');
+    const r51=Math.max(0,r43-r44-r47+r49-r50);
+    const r53=adjAt(i,'iepsAlcohol'),r54=adjAt(i,'impConsolidable'),r55=adjAt(i,'pctConsolidable');
+    const r56=r51-r53+r54;
+    const r58=r56;
+    const r60=adjAt(i,'parteActualizada'),r61=adjAt(i,'recargos'),r62=adjAt(i,'multaCorreccion');
+    const r64=r58+r60+r61+r62;
+    const r66=adjAt(i,'credSalario'),r68=adjAt(i,'subsidioEmpleo'),r70=adjAt(i,'ideAcreditable'),
+          r72=adjAt(i,'compensaciones'),r74=adjAt(i,'iepsDieselPrimario'),r76=adjAt(i,'dieselAutomotriz'),
+          r78=adjAt(i,'infraCarretera'),r80=adjAt(i,'otrosEstimulos'),r82=adjAt(i,'acredSorteos'),r84=adjAt(i,'dieselMarino');
+    const r86=r66+r68+r70+r72+r74+r76+r78+r80+r82+r84;
+    const r88=(isrAdj[i]||{}).fechaPagoAnt||'';
+    const r89=adjAt(i,'montoPagadoAnt');
+    const r91=r64-r86;
+    prevNom=r17; maxPer=Math.max(maxPer,r43); accPTU=r22; accAnt=r26; accPerd=r30; accRet=r47;
+    return{mes,i,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r21,r22,r25,r26,r29,r30,r32,r34,r36,r38,r39,r40,r41,r42,r43,r44,r46,r47,r49,r50,r51,r53,r54,r55,r56,r58,r60,r61,r62,r64,r66,r68,r70,r72,r74,r76,r78,r80,r82,r84,r86,r88,r89,r91};
+  });
+  const annualCantidadAPagar=months.reduce((s,m)=>s+m.r91,0);
+  return{months,annualCantidadAPagar};
+}
+
+/* ── IVA VERTICAL (P.P. IVA — formato SAT, replica hoja "PD IVA" del Excel) ── */
+const IVA_ROWS=[
+  {section:'Monto De Los Actos O Actividades Pagados — Base Del IVA Acreditable'},
+  {row:11,label:'Total de los Actos ó Actividades Pagados a la Tasa del 16% de IVA',key:'r11',bold:true},
+  {row:12,label:'Intereses Pagados a la Tasa del 16%',key:'r12',edit:'intPag16'},
+  {row:13,label:'Regalías Pagadas Entre Partes Relacionadas a la Tasa del 16%',key:'r13',edit:'regPag16'},
+  {row:14,label:'Otros Actos ó Actividades Pagados a la Tasa del 16%',key:'r14'},
+  {row:16,label:'Total de los Actos ó Actividades sujetos al estímulo de la RFN',key:'r16',bold:true},
+  {row:17,label:'Intereses Pagados sujetos al estímulo de la RFN',key:'r17',edit:'intRFN'},
+  {row:18,label:'Regalías Pagadas Entre Partes Relacionadas sujetos al estímulo de la RFN',key:'r18',edit:'regRFN'},
+  {row:19,label:'Otros Actos ó Actividades Pagados sujetos al estímulo de la RFN',key:'r19',edit:'otrosRFN'},
+  {row:21,label:'Total de los Actos ó Actividades Pagados a la Tasa del 11% de IVA (Vigente en 2013)',key:'r21',bold:true},
+  {row:22,label:'Intereses Pagados a la Tasa del 11%',key:'r22',edit:'intPag11'},
+  {row:23,label:'Regalías Pagadas Entre Partes Relacionadas a la Tasa del 11%',key:'r23',edit:'regPag11'},
+  {row:24,label:'Otros Actos ó Actividades Pagados a la Tasa del 11%',key:'r24',edit:'otrosPag11'},
+  {row:33,label:'Total de los Actos ó Actividades Pagados en la Importación de Bienes y Servicios',key:'r33',bold:true},
+  {row:27,label:'Importación — a la Tasa del 16% de IVA',key:'r27',edit:'impBase16'},
+  {row:28,label:'Importación de Bienes Intangibles a la Tasa del 16%',key:'r28',edit:'impBienesIntang16'},
+  {row:29,label:'Importación de Uso ó Goce Temporal de Bienes Intangibles a la Tasa del 16%',key:'r29',edit:'impUsoGoceIntang16'},
+  {row:30,label:'Importación de Servicios a la Tasa del 16%',key:'r30',edit:'impServ16'},
+  {row:31,label:'Otros Actos ó Actividades Pagados en la Importación de Bienes y Servicios a la Tasa del 16%',key:'r31',edit:'impOtros16'},
+  {row:34,label:'Importación — a la Tasa del 11% de IVA (Vigente en 2013)',key:'r34',edit:'impBase11'},
+  {row:35,label:'Importación de Bienes Intangibles a la Tasa del 11%',key:'r35',edit:'impBienesIntang11'},
+  {row:36,label:'Importación de Uso ó Goce Temporal de Bienes Intangibles a la Tasa del 11%',key:'r36',edit:'impUsoGoceIntang11'},
+  {row:37,label:'Importación de Servicios a la Tasa del 11%',key:'r37',edit:'impServ11'},
+  {row:38,label:'Otros Actos ó Actividades Pagados en la Importación de Bienes y Servicios a la Tasa del 11%',key:'r38',edit:'impOtros11'},
+  {row:40,label:'Total de los Demás Actos ó Actividades Pagados a la Tasa del 0% IVA',key:'r40',edit:'actos0Pagados'},
+  {row:42,label:'Total de los Actos ó Actividades Pagados por los Que No Se Pagará el IVA (Exentos)',key:'r42',bold:true},
+  {row:43,label:'Adquisición de Suelo y Construcciones Adheridas al Suelo para Casa Habitación',key:'r43',edit:'exeSuelo'},
+  {row:44,label:'Adquisición de Libros, Periódicos ó Revistas (No Editados por el Contribuyente)',key:'r44',edit:'exeLibros'},
+  {row:45,label:'Regalías Pagadas a los Autores',key:'r45',edit:'exeRegalias'},
+  {row:46,label:'Adquisición de Bienes Muebles Usados Excepto los Adquiridos de Empresas',key:'r46',edit:'exeBienesUsados'},
+  {row:47,label:'Servicio de Transporte Público Terrestre de Personas',key:'r47',edit:'exeTransporte'},
+  {row:48,label:'Servicios Profesionales de Medicina',key:'r48',edit:'exeMedicina'},
+  {row:49,label:'Aseguramiento Contra Riesgos Agropecuarios',key:'r49',edit:'exeAgropecuario'},
+  {row:50,label:'Uso ó Goce Temporal de Fincas para Fines Agrícolas ó Ganaderos',key:'r50',edit:'exeFincasAgricolas'},
+  {row:51,label:'Actos ó Actividades Pagados en la Importación de Bienes y Servicios Exentos',key:'r51',edit:'exeImportacion'},
+  {row:52,label:'Otros Actos ó Actividades Pagados Exentos',key:'r52',edit:'exeOtros'},
+  {section:'Determinación Del Impuesto Al Valor Agregado Acreditable'},
+  {row:59,label:'IVA de los Actos ó Actividades Pagados a la Tasa del 16%',key:'r59'},
+  {row:60,label:'IVA pagado sujeto al estímulo de la RFN',key:'r60',edit:'rfnIvaPagado'},
+  {row:61,label:'IVA de los Actos ó Actividades Pagados en Importación a la Tasa del 16%',key:'r61'},
+  {row:62,label:'Total de IVA Trasladado al Contribuyente (Efectivamente Pagado)',key:'r62',bold:true},
+  {row:65,label:'IVA por Adquisición de Bienes ó Servicios Exclusivamente para Actividades Gravadas',key:'r65'},
+  {row:68,label:'IVA de Servicios ó Uso ó Goce Temporal de Bienes Exclusivamente para Actividades Gravadas',key:'r68',edit:'ivaServGravadoExcl'},
+  {row:70,label:'IVA Trasladado por Inversiones Destinadas Exclusivamente para Realizar Actividades Gravadas',key:'r70',edit:'ivaInvGravadoExcl'},
+  {row:72,label:'IVA Pagado por Importación de Inversiones Destinadas Exclusivamente para Realizar Actividades Gravadas',key:'r72',edit:'ivaImpInvGravadoExcl'},
+  {row:74,label:'Total de IVA Correspondiente a Actos ó Actividades Gravados',key:'r74',bold:true},
+  {row:77,label:'IVA por Uso ó Goce Temporal de Bienes Destinados Exclusivamente para Actividades Exentas',key:'r77',edit:'ivaUsoGoceExento'},
+  {row:80,label:'IVA por Adquisición de Bienes ó Servicios Destinados Exclusivamente para Actividades Exentas',key:'r80',edit:'ivaActExentas'},
+  {row:82,label:'IVA de Bienes Utilizados Indistintamente para Realizar Actividades Gravadas y Exentas',key:'r82',edit:'ivaMixto'},
+  {row:84,label:'Proporción Utilizada Conforme al Artículo 5 de la Ley del IVA',key:'r84',edit:'propArt5',decimal:true},
+  {row:85,label:'Proporción Utilizada Conforme al Artículo 5-B de la Ley del IVA',key:'r85',edit:'propArt5B',decimal:true},
+  {row:88,label:'IVA Acreditable Proporcional de Bienes Utilizados en Actividades Gravadas y Exentas',key:'r88'},
+  {row:90,label:'IVA Acreditable',key:'r90',bold:true},
+  {row:92,label:'Monto Acreditable Actualizado a Incrementar Derivado del Ajuste',key:'r92',edit:'ajusteAcreditableIncr'},
+  {row:94,label:'Total de IVA Acreditable del Periodo',key:'r94',bold:true,hl:true},
+  {section:'Determinación Del Impuesto Al Valor Agregado A Cargo — IVA Trasladado'},
+  {row:101,label:'Valor de los Actos ó Actividades Gravados a la Tasa del 16%',key:'r101',bold:true},
+  {row:102,label:'Intereses Cobrados a la Tasa del 16%',key:'r102',edit:'intCob16'},
+  {row:103,label:'Regalías Cobradas Entre Partes Relacionadas a la Tasa del 16%',key:'r103',edit:'regCob16'},
+  {row:104,label:'Otros Actos ó Actividades Gravados a la Tasa del 16%',key:'r104'},
+  {row:106,label:'Valor de los Actos ó Actividades Gravados a la Tasa del 11% (Vigente en 2013)',key:'r106',bold:true},
+  {row:107,label:'Intereses Cobrados a la Tasa del 11%',key:'r107',edit:'intCob11'},
+  {row:108,label:'Regalías Cobradas Entre Partes Relacionadas a la Tasa del 11%',key:'r108',edit:'regCob11'},
+  {row:109,label:'Otros Actos ó Actividades Gravados a la Tasa del 11%',key:'r109',edit:'otrosCob11'},
+  {row:111,label:'Valor de los Actos ó Actividades Gravados a la Tasa del 0% Exportación',key:'r111',edit:'gravado0Export'},
+  {row:113,label:'Valor de los Actos ó Actividades Gravados a la Tasa del 0% Otros',key:'r113',bold:true},
+  {row:114,label:'Actividades Agrícolas, Ganaderas, Silvícola ó Pesqueras a la Tasa del 0%',key:'r114',edit:'agricola0'},
+  {row:115,label:'Otros Actos ó Actividades Gravados a la Tasa del 0%',key:'r115',edit:'otros0'},
+  {row:117,label:'Suma de los Actos ó Actividades Gravados',key:'r117',bold:true},
+  {row:119,label:'Valor de los Actos ó Actividades por los Que No Se Deba Pagar el Impuesto (Exentos)',key:'r119',bold:true},
+  {row:120,label:'Enajenación de Suelo y Construcciones Adheridas al Suelo, Destinadas para Casa Habitación',key:'r120',edit:'excCasaHab'},
+  {row:121,label:'Enajenación de Libros, Periódicos ó Revistas (No Editados por el Contribuyente)',key:'r121',edit:'excLibros'},
+  {row:122,label:'Regalías Cobradas a los Autores',key:'r122',edit:'excRegalias'},
+  {row:123,label:'Enajenación de Bienes Muebles Usados Excepto los Enajenados por Empresas',key:'r123',edit:'excBienesUsados'},
+  {row:124,label:'Enajenación de Billetes y Demás Comprobantes de Loterías, Rifas, Sorteos o Juegos con Apuestas',key:'r124',edit:'excLoterias'},
+  {row:125,label:'Servicios de Enseñanza',key:'r125',edit:'excEnsenanza'},
+  {row:126,label:'Servicio de Transporte Público Terrestre de Personas',key:'r126',edit:'excTransporte'},
+  {row:127,label:'Operaciones Financieras Derivadas',key:'r127',edit:'excOpFin'},
+  {row:128,label:'Venta de Boletos para Espectáculos Públicos',key:'r128',edit:'excBoletos'},
+  {row:129,label:'Servicios Profesionales de Medicina',key:'r129',edit:'excMedicina'},
+  {row:130,label:'Uso ó Goce Temporal de Inmuebles para Casa Habitación y por Fincas Agrícolas ó Ganaderas',key:'r130',edit:'excUsoGoce'},
+  {row:131,label:'Otros Ingresos Exentos de IVA',key:'r131',edit:'excOtros'},
+  {row:133,label:'Impuesto Causado',key:'r133',bold:true,hl:true},
+  {section:'Determinación Final Del Pago De IVA'},
+  {row:136,label:'IVA Retenido al Contribuyente',key:'r136',edit:'ivaRetenidoContrib'},
+  {row:137,label:'Total de IVA Acreditable',key:'r137'},
+  {row:139,label:'Otras Cantidades a Cargo del Contribuyente',key:'r139'},
+  {row:140,label:'Otras Cantidades a Favor del Contribuyente',key:'r140'},
+  {row:144,label:'Cantidad a Cargo',key:'r144',bold:true},
+  {row:145,label:'Saldo a Favor',key:'r145'},
+  {row:148,label:'Devolución Inmediata Obtenida',key:'r148',edit:'devolucionInmediata'},
+  {row:150,label:'Saldo a Favor del Periodo',key:'r150'},
+  {row:152,label:'Acreditamiento del Saldo a Favor de Periodos Anteriores (Sin Exceder de la Cantidad a Cargo)',key:'r152',ivaAcredRow:true},
+  {row:154,label:'Diferencia a Cargo',key:'r154',bold:true},
+  {row:156,label:'IEPS Acreditable de Alcohol, Alcohol Desnaturalizado de Productos Distintos de Bebidas Alcohólicas',key:'r156',edit:'iepsAlcoholIva'},
+  {row:158,label:'Impuesto a Cargo',key:'r158',bold:true,hl:true},
+  {row:166,label:'A Cargo',key:'r166',bold:true},
+  {row:167,label:'A Favor',key:'r167',edit:'aFavorIva'},
+  {row:169,label:'Parte Actualizada',key:'r169',edit:'parteActIva'},
+  {row:170,label:'Recargos',key:'r170',edit:'recargosIva'},
+  {row:171,label:'Multa por Corrección',key:'r171',edit:'multaIva'},
+  {row:172,label:'Total de Contribuciones',key:'r172',bold:true},
+  {row:174,label:'Crédito al Salario',key:'r174',edit:'credSalarioIva'},
+  {row:175,label:'Subsidio para el Empleo',key:'r175',edit:'subsidioIva'},
+  {row:176,label:'Compensaciones',key:'r176',edit:'compensacionesIva'},
+  {row:177,label:'Crédito IEPS Diesel Sector Primario y Minero',key:'r177',edit:'iepsDieselPrimarioIva'},
+  {row:178,label:'Diesel Automotriz para Transporte',key:'r178',edit:'dieselAutomotrizIva'},
+  {row:179,label:'Uso de Infraestructura Carretera de Cuota',key:'r179',edit:'infraCarreteraIva'},
+  {row:180,label:'Otros Estímulos',key:'r180',edit:'otrosEstimulosIva'},
+  {row:181,label:'Certificados Tesofe',key:'r181',edit:'certTesofe'},
+  {row:182,label:'Diesel Marino',key:'r182',edit:'dieselMarinoIva'},
+  {row:183,label:'Total de Aplicaciones',key:'r183',bold:true},
+  {row:186,label:'Fecha del Pago Realizado con Anterioridad',key:'r186',edit:'fechaPagoAntIva',isDate:true},
+  {row:187,label:'Monto Pagado con Anterioridad',key:'r187',edit:'montoPagadoAntIva'},
+  {row:189,label:'Cantidad a Cargo',key:'r189',bold:true},
+  {row:191,label:'Cantidad a Favor',key:'r191'},
+  {row:192,label:'Cantidad a Pagar',key:'r192',bold:true,hl:true},
+];
+function computeIVAVertical(ing,eg,cfg,ivaAdj,ivaAcredArr,banco){
+  const ingAC=ing.filter(x=>isConciliado(x,'ingreso',banco));
+  const egAC=eg.filter(x=>isConciliado(x,'egreso',banco));
+  const adjAt=(i,k)=>num((ivaAdj[i]||{})[k]);
+  const rate=cfg.ivaRate;
+  const months=MESES.map((mes,i)=>{
+    const r12=adjAt(i,'intPag16'),r13=adjAt(i,'regPag16');
+    const r14=egAC.filter(e=>getM(e.fecha)===i&&TIPOS[e.tipo]?.iva&&num(e.iva)>0).reduce((s,e)=>s+num(e.subtotal),0);
+    const r11=r12+r13+r14;
+    const r17=adjAt(i,'intRFN'),r18=adjAt(i,'regRFN'),r19=adjAt(i,'otrosRFN');
+    const r16=r17+r18+r19;
+    const r22=adjAt(i,'intPag11'),r23=adjAt(i,'regPag11'),r24=adjAt(i,'otrosPag11');
+    const r21=r22+r23+r24;
+    const r27=adjAt(i,'impBase16'),r28=adjAt(i,'impBienesIntang16'),r29=adjAt(i,'impUsoGoceIntang16'),r30=adjAt(i,'impServ16'),r31=adjAt(i,'impOtros16');
+    const r34=adjAt(i,'impBase11'),r35=adjAt(i,'impBienesIntang11'),r36=adjAt(i,'impUsoGoceIntang11'),r37=adjAt(i,'impServ11'),r38=adjAt(i,'impOtros11');
+    const r33=r27+r28+r29+r30+r31+r34+r35+r36+r37+r38;
+    const r40=adjAt(i,'actos0Pagados')+egAC.filter(e=>getM(e.fecha)===i).reduce((s,e)=>s+num(e.base0),0);
+    const r43=adjAt(i,'exeSuelo'),r44=adjAt(i,'exeLibros'),r45=adjAt(i,'exeRegalias'),r46=adjAt(i,'exeBienesUsados'),r47=adjAt(i,'exeTransporte'),r48=adjAt(i,'exeMedicina'),r49=adjAt(i,'exeAgropecuario'),r50=adjAt(i,'exeFincasAgricolas'),r51=adjAt(i,'exeImportacion'),r52=adjAt(i,'exeOtros');
+    const r42=r43+r44+r45+r46+r47+r48+r49+r50+r51+r52;
+    const r59=r11*rate;
+    const r60=adjAt(i,'rfnIvaPagado');
+    const r61=(r27+r28+r29+r30+r31)*rate;
+    const r62=r59+r60+r61;
+    const r65=r62;
+    const r68=adjAt(i,'ivaServGravadoExcl');
+    const r70=adjAt(i,'ivaInvGravadoExcl');
+    const r72=adjAt(i,'ivaImpInvGravadoExcl');
+    const r74=r65+r68+r70+r72;
+    const r77=adjAt(i,'ivaUsoGoceExento');
+    const r80=adjAt(i,'ivaActExentas');
+    const r82=adjAt(i,'ivaMixto');
+    const r84=adjAt(i,'propArt5');
+    const r85=adjAt(i,'propArt5B');
+    const r88=r82*(r84||r85||0);
+    const r90=r74+r88;
+    const r92=adjAt(i,'ajusteAcreditableIncr');
+    const r94=r90+r92;
+    const r102=adjAt(i,'intCob16'),r103=adjAt(i,'regCob16');
+    const r104=ingAC.filter(x=>getM(x.fecha)===i).reduce((s,x)=>s+num(x.subtotal),0);
+    const r101=r102+r103+r104;
+    const r107=adjAt(i,'intCob11'),r108=adjAt(i,'regCob11'),r109=adjAt(i,'otrosCob11');
+    const r106=r107+r108+r109;
+    const r111=adjAt(i,'gravado0Export');
+    const r114=adjAt(i,'agricola0'),r115=adjAt(i,'otros0');
+    const r113=r114+r115;
+    const r117=r101+r106+r111+r113;
+    const r120=adjAt(i,'excCasaHab'),r121=adjAt(i,'excLibros'),r122=adjAt(i,'excRegalias'),r123=adjAt(i,'excBienesUsados'),r124=adjAt(i,'excLoterias'),r125=adjAt(i,'excEnsenanza'),r126=adjAt(i,'excTransporte'),r127=adjAt(i,'excOpFin'),r128=adjAt(i,'excBoletos'),r129=adjAt(i,'excMedicina'),r130=adjAt(i,'excUsoGoce'),r131=adjAt(i,'excOtros');
+    const r119=r120+r121+r122+r123+r124+r125+r126+r127+r128+r129+r130+r131;
+    const r133=r117*rate;
+    const r136=adjAt(i,'ivaRetenidoContrib');
+    const r137=r94;
+    const r139=egAC.filter(e=>getM(e.fecha)===i&&TIPOS[e.tipo]?.retIVA).reduce((s,e)=>s+num(e.retIVA),0);
+    const r140=r139;
+    const r144=r133-r137+r139-r140;
+    const r145=Math.max(0,-r144);
+    const r148=adjAt(i,'devolucionInmediata');
+    const r150=Math.max(0,r145-r148);
+    const r152=num(ivaAcredArr[i]);
+    const r154=Math.max(0,r144-r152);
+    const r156=adjAt(i,'iepsAlcoholIva');
+    const r158=r154-r156;
+    const r166=r158;
+    const r167=adjAt(i,'aFavorIva');
+    const r169=adjAt(i,'parteActIva'),r170=adjAt(i,'recargosIva'),r171=adjAt(i,'multaIva');
+    const r172=r166+r169+r170+r171;
+    const r174=adjAt(i,'credSalarioIva'),r175=adjAt(i,'subsidioIva'),r176=adjAt(i,'compensacionesIva'),r177=adjAt(i,'iepsDieselPrimarioIva'),r178=adjAt(i,'dieselAutomotrizIva'),r179=adjAt(i,'infraCarreteraIva'),r180=adjAt(i,'otrosEstimulosIva'),r181=adjAt(i,'certTesofe'),r182=adjAt(i,'dieselMarinoIva');
+    const r183=r174+r175+r176+r177+r178+r179+r180+r181+r182;
+    const r186=(ivaAdj[i]||{}).fechaPagoAntIva||'';
+    const r187=adjAt(i,'montoPagadoAntIva');
+    const rawFinal=r172-r183;
+    const r189=Math.max(0,rawFinal);
+    const r191=Math.max(0,-rawFinal);
+    const r192=r189;
+    return{mes,i,r11,r12,r13,r14,r16,r17,r18,r19,r21,r22,r23,r24,r27,r28,r29,r30,r31,r33,r34,r35,r36,r37,r38,r40,r42,r43,r44,r45,r46,r47,r48,r49,r50,r51,r52,
+      r59,r60,r61,r62,r65,r68,r70,r72,r74,r77,r80,r82,r84,r85,r88,r90,r92,r94,
+      r101,r102,r103,r104,r106,r107,r108,r109,r111,r113,r114,r115,r117,r119,r120,r121,r122,r123,r124,r125,r126,r127,r128,r129,r130,r131,
+      r133,r136,r137,r139,r140,r144,r145,r148,r150,r152,r154,r156,r158,r166,r167,r169,r170,r171,r172,
+      r174,r175,r176,r177,r178,r179,r180,r181,r182,r183,r186,r187,r189,r191,r192};
+  });
+  const annualCantidadAPagar=months.reduce((s,m)=>s+m.r192,0);
+  const annualIvaCaus=months.reduce((s,m)=>s+m.r133,0);
+  const annualIvaAcr=months.reduce((s,m)=>s+m.r94,0);
+  const annualSfIVA=months.reduce((s,m)=>s+m.r150,0);
+  return{months,annualCantidadAPagar,annualIvaCaus,annualIvaAcr,annualSfIVA};
+}
+
+/* ── ISR RETENCIONES SERV. PROF. VERTICAL (replica hoja "ISR Retenciones Serv Prof" del Excel) ── */
+const RETISR_ROWS=[
+  {row:9,  label:'A Cargo', key:'r9', bold:true},
+  {row:11, label:'Parte Actualizada', key:'r11', edit:'parteActualizada'},
+  {row:12, label:'Recargos', key:'r12', edit:'recargos'},
+  {row:13, label:'Multa Por Corrección', key:'r13', edit:'multaCorreccion'},
+  {row:15, label:'Total De Contribuciones', key:'r15', bold:true},
+  {row:17, label:'Crédito Al Salario', key:'r17', edit:'credSalario'},
+  {row:19, label:'Subsidio Para El Empleo', key:'r19', edit:'subsidioEmpleo'},
+  {row:21, label:'Impuesto A Los Depósitos En Efectivo Acreditable', key:'r21', edit:'ideAcreditable'},
+  {row:23, label:'Compensaciones', key:'r23', edit:'compensaciones'},
+  {row:25, label:'Crédito IEPS Diesel Sector Primario Y Minero', key:'r25', edit:'iepsDieselPrimario'},
+  {row:27, label:'Diesel Automotriz Para Transporte', key:'r27', edit:'dieselAutomotriz'},
+  {row:29, label:'Uso De Infraestructura Carretera De Cuota', key:'r29', edit:'infraCarretera'},
+  {row:31, label:'Otros Estímulos', key:'r31', edit:'otrosEstimulos'},
+  {row:33, label:'Acreditamiento Sorteos', key:'r33', edit:'acredSorteos'},
+  {row:35, label:'Diesel Marino', key:'r35', edit:'dieselMarino'},
+  {row:37, label:'Total De Aplicaciones', key:'r37', bold:true},
+  {row:39, label:'Fecha Del Pago Realizado Con Anterioridad', key:'r39', edit:'fechaPagoAnt', isDate:true},
+  {row:40, label:'Monto Pagado Con Anterioridad', key:'r40', edit:'montoPagadoAnt'},
+  {row:42, label:'Cantidad A Pagar', key:'r42', bold:true, hl:true},
+];
+function computeRetISRVertical(eg,retAdj,banco){
+  const egAC=eg.filter(x=>isConciliado(x,'egreso',banco));
+  const adjAt=(i,k)=>num((retAdj[i]||{})[k]);
+  const months=MESES.map((mes,i)=>{
+    const r9=egAC.filter(e=>getM(e.fecha)===i&&TIPOS[e.tipo]?.retISR).reduce((s,e)=>s+num(e.retISR),0);
+    const r11=adjAt(i,'parteActualizada'),r12=adjAt(i,'recargos'),r13=adjAt(i,'multaCorreccion');
+    const r15=r9+r11+r12+r13;
+    const r17=adjAt(i,'credSalario'),r19=adjAt(i,'subsidioEmpleo'),r21=adjAt(i,'ideAcreditable'),r23=adjAt(i,'compensaciones'),r25=adjAt(i,'iepsDieselPrimario'),r27=adjAt(i,'dieselAutomotriz'),r29=adjAt(i,'infraCarretera'),r31=adjAt(i,'otrosEstimulos'),r33=adjAt(i,'acredSorteos'),r35=adjAt(i,'dieselMarino');
+    const r37=r17+r19+r21+r23+r25+r27+r29+r31+r33+r35;
+    const r39=(retAdj[i]||{}).fechaPagoAnt||'';
+    const r40=adjAt(i,'montoPagadoAnt');
+    const r42=Math.max(0,r15-r37);
+    return{mes,i,r9,r11,r12,r13,r15,r17,r19,r21,r23,r25,r27,r29,r31,r33,r35,r37,r39,r40,r42};
+  });
+  const annualCantidadAPagar=months.reduce((s,m)=>s+m.r42,0);
+  return{months,annualCantidadAPagar};
+}
+
+/* ── IVA RETENCIONES VERTICAL (replica hoja "IVA Retenciones" del Excel) ── */
+const RETIVA_ROWS=[
+  {row:9,  label:'A Cargo', key:'r9', bold:true},
+  {row:11, label:'Parte Actualizada', key:'r11', edit:'parteActualizada'},
+  {row:12, label:'Recargos', key:'r12', edit:'recargos'},
+  {row:13, label:'Multa Por Corrección', key:'r13', edit:'multaCorreccion'},
+  {row:15, label:'Total De Contribuciones', key:'r15', bold:true},
+  {row:17, label:'Crédito Al Salario', key:'r17', edit:'credSalario'},
+  {row:19, label:'Subsidio Para El Empleo', key:'r19', edit:'subsidioEmpleo'},
+  {row:21, label:'Impuesto A Los Depósitos En Efectivo Acreditable', key:'r21', edit:'ideAcreditable'},
+  {row:23, label:'Compensaciones', key:'r23', edit:'compensaciones'},
+  {row:25, label:'Crédito IEPS Diesel Sector Primario Y Minero', key:'r25', edit:'iepsDieselPrimario'},
+  {row:27, label:'Diesel Automotriz Para Transporte', key:'r27', edit:'dieselAutomotriz'},
+  {row:29, label:'Uso De Infraestructura Carretera De Cuota', key:'r29', edit:'infraCarretera'},
+  {row:31, label:'Otros Estímulos', key:'r31', edit:'otrosEstimulos'},
+  {row:33, label:'Acreditamiento Sorteos', key:'r33', edit:'acredSorteos'},
+  {row:35, label:'Diesel Marino', key:'r35', edit:'dieselMarino'},
+  {row:37, label:'Total De Aplicaciones', key:'r37', bold:true},
+  {row:39, label:'Fecha Del Pago Realizado Con Anterioridad', key:'r39', edit:'fechaPagoAnt', isDate:true},
+  {row:40, label:'Monto Pagado Con Anterioridad', key:'r40', edit:'montoPagadoAnt'},
+  {row:42, label:'Cantidad A Pagar', key:'r42', bold:true, hl:true},
+];
+function computeRetIVAVertical(eg,retAdj,banco){
+  const egAC=eg.filter(x=>isConciliado(x,'egreso',banco));
+  const adjAt=(i,k)=>num((retAdj[i]||{})[k]);
+  const months=MESES.map((mes,i)=>{
+    const r9=egAC.filter(e=>getM(e.fecha)===i&&TIPOS[e.tipo]?.retIVA).reduce((s,e)=>s+num(e.retIVA),0);
+    const r11=adjAt(i,'parteActualizada'),r12=adjAt(i,'recargos'),r13=adjAt(i,'multaCorreccion');
+    const r15=r9+r11+r12+r13;
+    const r17=adjAt(i,'credSalario'),r19=adjAt(i,'subsidioEmpleo'),r21=adjAt(i,'ideAcreditable'),r23=adjAt(i,'compensaciones'),r25=adjAt(i,'iepsDieselPrimario'),r27=adjAt(i,'dieselAutomotriz'),r29=adjAt(i,'infraCarretera'),r31=adjAt(i,'otrosEstimulos'),r33=adjAt(i,'acredSorteos'),r35=adjAt(i,'dieselMarino');
+    const r37=r17+r19+r21+r23+r25+r27+r29+r31+r33+r35;
+    const r39=(retAdj[i]||{}).fechaPagoAnt||'';
+    const r40=adjAt(i,'montoPagadoAnt');
+    const r42=Math.max(0,r15-r37);
+    return{mes,i,r9,r11,r12,r13,r15,r17,r19,r21,r23,r25,r27,r29,r31,r33,r35,r37,r39,r40,r42};
+  });
+  const annualCantidadAPagar=months.reduce((s,m)=>s+m.r42,0);
+  return{months,annualCantidadAPagar};
+}
+
+/* ── EDO. CTA. BANCARIO — BANAMEX CHEQUES (replica hoja "EdoCuentaBanamexCheques", extraído de los PDFs ene-may 2026) ── */
+const BANCO_SEED=[];
+const NOFACT_RE=/\b(sat|impuesto|pr[eé]stamo|compensaci[oó]n|invers)/i;
+const NOFACT_TIPOS=['SAT','TRASPASO','PRESTAMO'];
+const guessSinFactura=c=>NOFACT_RE.test(c||'');
+/* Conciliado = único criterio para considerar un Ingreso/Egreso fiscalmente (sustituye al viejo campo Estado) */
+const isConciliado=(rec,tipo,banco)=>{
+  const field=tipo==='ingreso'?'depositos':'retiros';
+  const monto=banco.filter(b=>b.matchTipo===tipo&&b.matchId===rec.id).reduce((s,b)=>s+num(b[field]),0);
+  return monto>0&&(num(rec.total)-monto)<=1;
+};
+function autoReconcile(banco,ing,eg){
+  const usedIng=new Set(),usedEg=new Set();
+  return banco.map(b=>{
+    if(b.sinFactura||b.matchId)return b;
+    const isDep=num(b.depositos)>0;
+    const amt=isDep?num(b.depositos):num(b.retiros);
+    if(amt<=0)return b;
+    const pool=isDep?ing:eg;
+    const used=isDep?usedIng:usedEg;
+    const monthIdx=getM(b.fecha);
+    const searchMonth=/comisi/i.test(b.concepto||'')&&monthIdx>0?monthIdx-1:monthIdx;
+    const cand=pool.find(x=>!used.has(x.id)&&getM(x.fecha)===searchMonth&&Math.abs(num(x.total)-amt)<=0.02);
+    if(cand){used.add(cand.id);return{...b,matchTipo:isDep?'ingreso':'egreso',matchId:cand.id};}
+    return b;
+  });
+}
+
+function autoEgreso(eg,cfg=TAX_DEF){
+  const t=TIPOS[eg.tipo];if(!t)return eg;
+  let sub=num(eg.subtotal),iva=num(eg.iva),retISR=0,retIVA=0;
+  if(t.iva){if(!sub&&num(eg.importe)){sub=num(eg.importe)/(1+cfg.ivaRate);iva=sub*cfg.ivaRate;}else if(!iva){iva=sub*cfg.ivaRate;}}
+  else{sub=num(eg.importe)||sub;iva=0;}
+  if(t.retISR)retISR=sub*cfg.retISR;
+  if(t.retIVA)retIVA=iva*2/3;
+  return{...eg,subtotal:sub,iva,retISR,retIVA,total:num(eg.importe)||sub+iva};
+}
+
+/* ── SEED VACIO (empresa nueva, sin historico) ── */
+const MIGRATION_SEED={"ingresos":[],"egresos":[],"ivaFavor":[],"isrFavor":[],"inversion":[],"config":{"coef":0.0979,"coefEneFeb":0.3446,"isrRate":0.3,"ivaRate":0.16,"retISR":0.1,"retIVA":0.10666666666666666},"ivaAcreditamientos":[0,0,0,0,0,0,0,0,0,0,0,0]};
+const TaxCtx=createContext();
+function TaxProvider({children}){
+  const [ing,setIng]=useState([]);
+  const [eg,setEg]=useState([]);
+  const [cfg,setCfg]=useState(TAX_DEF);
+  const [ivaFav,setIvaFav]=useState([]);
+  const [isrFav,setIsrFav]=useState([]);
+  const [inversion,setInversion]=useState([]);
+  const [ivaAcred,setIvaAcred]=useState([0,0,0,0,0,0,0,0,0,0,0,0]);
+  const [isrAdj,setIsrAdj]=useState(Array.from({length:12},()=>({})));
+  const [ivaAdj,setIvaAdj]=useState(Array.from({length:12},()=>({})));
+  const [retIsrAdj,setRetIsrAdj]=useState(Array.from({length:12},()=>({})));
+  const [retIvaAdj,setRetIvaAdj]=useState(Array.from({length:12},()=>({})));
+  const [banco,setBanco]=useState([]);
+  const [ready,setReady]=useState(false);
+  useEffect(()=>{(async()=>{
+    let ing=await sg('tax-EMP-ing');
+    let eg=await sg('tax-EMP-eg');
+    let cfg0=await sg('tax-EMP-cfg');
+    let ivf=await sg('tax-EMP-ivafav');
+    let isf=await sg('tax-EMP-isrfav');
+    let inv=await sg('tax-EMP-inv');
+    let iac=await sg('tax-EMP-ivaacred');
+    let isa=await sg('tax-EMP-isradj');
+    let iva=await sg('tax-EMP-ivaadj');
+    let ria=await sg('tax-EMP-retisradj');
+    let riv=await sg('tax-EMP-retivaadj');
+    let ban=await sg('tax-EMP-banco');
+    if(!ing||ing.length===0){ing=MIGRATION_SEED.ingresos;await sv('tax-EMP-ing',ing);}
+    if(!eg||eg.length===0){eg=MIGRATION_SEED.egresos;await sv('tax-EMP-eg',eg);}
+    if(!cfg0){cfg0={...MIGRATION_SEED.config};await sv('tax-EMP-cfg',cfg0);}
+    if(!ivf){ivf=MIGRATION_SEED.ivaFavor||[];await sv('tax-EMP-ivafav',ivf);}
+    if(!isf){isf=MIGRATION_SEED.isrFavor||[];await sv('tax-EMP-isrfav',isf);}
+    if(!inv){inv=MIGRATION_SEED.inversion||[];await sv('tax-EMP-inv',inv);}
+    if(!iac){iac=MIGRATION_SEED.ivaAcreditamientos||[0,0,0,0,0,0,0,0,0,0,0,0];await sv('tax-EMP-ivaacred',iac);}
+    if(!isa){isa=Array.from({length:12},()=>({}));await sv('tax-EMP-isradj',isa);}
+    if(!iva){iva=Array.from({length:12},()=>({}));await sv('tax-EMP-ivaadj',iva);}
+    if(!ria){ria=Array.from({length:12},()=>({}));await sv('tax-EMP-retisradj',ria);}
+    if(!riv){riv=Array.from({length:12},()=>({}));await sv('tax-EMP-retivaadj',riv);}
+    if(!ban||ban.length===0){
+      ban=BANCO_SEED.map(r=>({id:uid(),...r,sinFactura:guessSinFactura(r.concepto)}));
+      ban=autoReconcile(ban,ing,eg);
+      await sv('tax-EMP-banco',ban);
+    }
+    setIng(ing); setEg(eg); setCfg({...TAX_DEF,...cfg0}); setIvaFav(ivf); setIsrFav(isf); setInversion(inv); setIvaAcred(iac); setIsrAdj(isa); setIvaAdj(iva); setRetIsrAdj(ria); setRetIvaAdj(riv); setBanco(ban); setReady(true);
+  })();},[]);
+  const saveIng=useCallback(async d=>{setIng(d);await sv('tax-EMP-ing',d);},[]);
+  const saveEg=useCallback(async d=>{setEg(d);await sv('tax-EMP-eg',d);},[]);
+  const saveCfg=useCallback(async d=>{setCfg(d);await sv('tax-EMP-cfg',d);},[]);
+  const saveIvaFav=useCallback(async d=>{setIvaFav(d);await sv('tax-EMP-ivafav',d);},[]);
+  const saveIsrFav=useCallback(async d=>{setIsrFav(d);await sv('tax-EMP-isrfav',d);},[]);
+  const saveInversion=useCallback(async d=>{setInversion(d);await sv('tax-EMP-inv',d);},[]);
+  const saveIvaAcred=useCallback(async d=>{setIvaAcred(d);await sv('tax-EMP-ivaacred',d);},[]);
+  const saveIsrAdj=useCallback(async d=>{setIsrAdj(d);await sv('tax-EMP-isradj',d);},[]);
+  const saveIvaAdj=useCallback(async d=>{setIvaAdj(d);await sv('tax-EMP-ivaadj',d);},[]);
+  const saveRetIsrAdj=useCallback(async d=>{setRetIsrAdj(d);await sv('tax-EMP-retisradj',d);},[]);
+  const saveRetIvaAdj=useCallback(async d=>{setRetIvaAdj(d);await sv('tax-EMP-retivaadj',d);},[]);
+  const saveBanco=useCallback(async d=>{setBanco(d);await sv('tax-EMP-banco',d);},[]);
+  const fiscalBase=useMemo(()=>computeFiscal(ing,eg,{...cfg,ivaAcred},banco),[ing,eg,cfg,ivaAcred,banco]);
+  const isrDet=useMemo(()=>computeISRVertical(ing,inversion,cfg,isrAdj,banco),[ing,inversion,cfg,isrAdj,banco]);
+  const ivaDet=useMemo(()=>computeIVAVertical(ing,eg,cfg,ivaAdj,ivaAcred,banco),[ing,eg,cfg,ivaAdj,ivaAcred,banco]);
+  const retIsrDet=useMemo(()=>computeRetISRVertical(eg,retIsrAdj,banco),[eg,retIsrAdj,banco]);
+  const retIvaDet=useMemo(()=>computeRetIVAVertical(eg,retIvaAdj,banco),[eg,retIvaAdj,banco]);
+  const fiscal=useMemo(()=>{
+    const isrTotal=isrDet.annualCantidadAPagar;
+    const retISR=retIsrDet.annualCantidadAPagar;
+    const retIVA=retIvaDet.annualCantidadAPagar;
+    const dash={...fiscalBase.dash,isrTotal,ivaTotal:ivaDet.annualCantidadAPagar,ivaCaus:ivaDet.annualIvaCaus,ivaAcr:ivaDet.annualIvaAcr,sfIVA:ivaDet.annualSfIVA,retISR,retIVA,
+      total:ivaDet.annualCantidadAPagar+retISR+retIVA+isrTotal};
+    return{...fiscalBase,dash,isrDet,ivaDet,retIsrDet,retIvaDet};
+  },[fiscalBase,isrDet,ivaDet,retIsrDet,retIvaDet]);
+  return(<TaxCtx.Provider value={{ing,eg,cfg,ivaFav,isrFav,inversion,ivaAcred,isrAdj,ivaAdj,retIsrAdj,retIvaAdj,banco,fiscal,ready,saveIng,saveEg,saveCfg,saveIvaFav,saveIsrFav,saveInversion,saveIvaAcred,saveIsrAdj,saveIvaAdj,saveRetIsrAdj,saveRetIvaAdj,saveBanco}}>{children}</TaxCtx.Provider>);
+}
+
+/* ── TAX DASHBOARD ── */
+function TaxDashboard(){
+  const {fiscal,cfg,saveCfg}=useContext(TaxCtx);
+  const {dash}=fiscal;
+  const isrMeses=fiscal.isrDet.months;
+  const ivaMeses=fiscal.ivaDet.months;
+  const [editCfg,setEditCfg]=useState(false);
+  const [tmpCfg,setTmpCfg]=useState({});
+  return(<div>
+    <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:16,flexWrap:'wrap',gap:8}}>
+      <div className="sec-hdr" style={{marginBottom:0}}><h3>Totales 2026</h3><p>Dashboard de impuestos — [NOMBRE DE LA EMPRESA] · se actualiza automáticamente</p></div>
+      <button className="btn-g" style={{fontSize:12,display:'flex',alignItems:'center',gap:6}} onClick={()=>{setTmpCfg(cfg);setEditCfg(true);}}>⚙ Parámetros</button>
+    </div>
+    <div className="ovr">
+      <table className="tbl">
+        <thead><tr><th>Mes</th><th className="num">ISR a Pagar</th><th className="num">IVA a Pagar</th><th className="num">Ret. ISR</th><th className="num">Ret. IVA</th><th className="num">Total mes</th></tr></thead>
+        <tbody>{MESES.map((m,i)=>{
+          const isr=isrMeses[i],iva=ivaMeses[i];
+          const retI=fiscal.retISRr.filter(r=>getM(r.fecha)===i).reduce((s,r)=>s+num(r.retISR),0);
+          const retV=fiscal.retIVAr.filter(r=>getM(r.fecha)===i).reduce((s,r)=>s+num(r.retIVA),0);
+          const tot=isr.r91+iva.r192+retI+retV;
+          const dim=!isr.r16&&!iva.r133;
+          return(<tr key={m} className={dim?'dim':''}>
+            <td>{m}</td>
+            <td className="num">{dim?'—':'$'+mxn(isr.r91)}</td>
+            <td className="num">{dim?'—':'$'+mxn(iva.r192)}</td>
+            <td className="num">{retI?'$'+mxn(retI):'—'}</td>
+            <td className="num">{retV?'$'+mxn(retV):'—'}</td>
+            <td className="num" style={{fontWeight:dim?400:600}}>{dim?'—':'$'+mxn(tot)}</td>
+          </tr>);
+        })}</tbody>
+        <tfoot><tr style={{background:'var(--acb)'}}>
+          <td style={{fontWeight:700,fontSize:13}}>Total anual</td>
+          <td className="num" style={{fontWeight:700}}>${mxn(dash.isrTotal)}</td>
+          <td className="num" style={{fontWeight:700}}>${mxn(dash.ivaTotal)}</td>
+          <td className="num" style={{fontWeight:700}}>${mxn(dash.retISR)}</td>
+          <td className="num" style={{fontWeight:700}}>${mxn(dash.retIVA)}</td>
+          <td className="num" style={{fontWeight:700,color:'var(--ac)'}}>${mxn(dash.total)}</td>
+        </tr></tfoot>
+      </table>
+    </div>
+    {editCfg&&(<div className="modal-bg" onClick={e=>{if(e.target===e.currentTarget)setEditCfg(false);}}>
+      <div className="modal" style={{padding:24,maxWidth:400}}>
+        <h4 style={{marginBottom:16,fontWeight:600}}>Parámetros fiscales</h4>
+        {[['Coeficiente utilidad 2026','coef'],['Coeficiente ene-feb','coefEneFeb']].map(([l,k])=>(
+          <div key={k} style={{marginBottom:12}}>
+            <label style={{fontSize:12,fontWeight:500,display:'block',marginBottom:4}}>{l}</label>
+            <input className="inp" type="number" step="0.0001" defaultValue={cfg[k]} onChange={e=>setTmpCfg(t=>({...t,[k]:parseFloat(e.target.value)||0}))}/>
+          </div>
+        ))}
+        <p style={{fontSize:11,color:'var(--i3)',marginBottom:16}}>Tasa ISR PM: 30% · IVA: 16% · Ret. ISR hon.: 10% · Ret. IVA: 2/3 (10.6667%)</p>
+        <div style={{display:'flex',gap:8}}>
+          <button className="btn-p" onClick={()=>{saveCfg({...cfg,...tmpCfg});setEditCfg(false);}}>Guardar</button>
+          <button className="btn-g" onClick={()=>setEditCfg(false)}>Cancelar</button>
+        </div>
+      </div>
+    </div>)}
+  </div>);
+}
+
+/* ── PP ISR (formato SAT vertical — replica hoja "P.P. ISR" del Excel) ── */
+function TaxISR(){
+  const {fiscal,isrAdj,saveIsrAdj}=useContext(TaxCtx);
+  const {months,annualCantidadAPagar}=fiscal.isrDet;
+  const setAdj=(i,field,val)=>{
+    const next=isrAdj.map((m,idx)=>idx===i?{...m,[field]:val}:m);
+    saveIsrAdj(next);
+  };
+  const numInput=(i,field,val)=>(
+    <input type="number" step="0.01" value={val===0||val===undefined||val===''?'':val}
+      onChange={e=>setAdj(i,field,e.target.value===''?0:parseFloat(e.target.value)||0)}
+      style={{width:78,padding:'3px 5px',border:'1px solid var(--br)',borderRadius:5,fontSize:11,fontFamily:'var(--mono)',textAlign:'right',background:'#FFFDF5'}}/>
+  );
+  const rawVal=(i,field)=> (isrAdj[i]||{})[field];
+  return(<div>
+    <div className="sec-hdr"><h3>P.P. ISR — Determinación de Pagos Provisionales</h3><p>Formato vertical SAT · filas en amarillo son editables y alimentan el cálculo automáticamente.</p></div>
+    <div className="ovr" style={{maxHeight:'70vh'}}>
+      <table className="tbl" style={{fontSize:11.5}}>
+        <thead><tr>
+          <th style={{minWidth:320,position:'sticky',left:0,zIndex:2,background:'var(--s1)'}}>Concepto</th>
+          {months.map(m=><th key={m.i} className="num" style={{minWidth:78}}>{m.mes.slice(0,3)}</th>)}
+          <th className="num" style={{minWidth:88,color:'var(--ac)'}}>Anual</th>
+        </tr></thead>
+        <tbody>
+          {ISR_ROWS.map(rd=>{
+            const vals=months.map(m=>m[rd.key]);
+            const annualVal=rd.annual?vals.reduce((s,v)=>s+num(v),0):null;
+            return(<tr key={rd.row} style={rd.hl?{background:'var(--acb)'}:{}}>
+              <td style={{fontWeight:rd.bold?700:500,fontSize:rd.bold?12.5:11.5,color:rd.muted?'var(--i3)':'inherit',position:'sticky',left:0,background:rd.hl?'var(--acb)':'var(--s)',zIndex:1}}>{rd.label}</td>
+              {months.map((m,i)=>{
+                const v=m[rd.key];
+                if(rd.isDate){
+                  return(<td key={i} className="num"><input type="date" value={rawVal(i,rd.edit)||''} onChange={e=>setAdj(i,rd.edit,e.target.value)} style={{width:96,padding:'3px 4px',border:'1px solid var(--br)',borderRadius:5,fontSize:10.5,background:'#FFFDF5'}}/></td>);
+                }
+                if(rd.edit){
+                  return(<td key={i} className="num">{numInput(i,rd.edit,rawVal(i,rd.edit))}</td>);
+                }
+                if(rd.decimal){
+                  return(<td key={i} className="num" style={{color:'var(--i3)'}}>{v?v.toFixed(4):'—'}</td>);
+                }
+                if(rd.percentFmt){
+                  return(<td key={i} className="num" style={{color:'var(--i3)'}}>{v?(v*100).toFixed(0)+'%':'—'}</td>);
+                }
+                return(<td key={i} className="num" style={{fontWeight:rd.bold?700:400,color:rd.hl?'var(--ac)':'inherit'}}>{v?'$'+mxn(v):'—'}</td>);
+              })}
+              <td className="num" style={{fontWeight:rd.annual?700:400,color:rd.annual?'var(--ac)':'var(--i3)'}}>{rd.annual?(annualVal?'$'+mxn(annualVal):'$0.00'):'—'}</td>
+            </tr>);
+          })}
+        </tbody>
+        <tfoot><tr style={{background:'var(--acb)'}}>
+          <td style={{fontWeight:700,fontSize:13,position:'sticky',left:0,background:'var(--acb)'}}>Total anual — Cantidad a Pagar</td>
+          {months.map(m=><td key={m.i} className="num" style={{fontWeight:700}}>${mxn(m.r91)}</td>)}
+          <td className="num" style={{fontWeight:700,color:'var(--ac)'}}>${mxn(annualCantidadAPagar)}</td>
+        </tr></tfoot>
+      </table>
+    </div>
+    <p style={{fontSize:11.5,color:'var(--i3)',marginTop:10}}>Ingresos (uso o goce), intereses de inversión, coeficiente e ISR retenido se calculan automáticamente desde Ingresos y Edo. Cta. Inversión. Las demás filas se capturan manualmente (fondo amarillo) igual que en el reporte SAT.</p>
+  </div>);
+}
+
+/* ── PP IVA (formato SAT vertical — replica hoja "PD IVA" del Excel) ── */
+function TaxIVA(){
+  const {fiscal,ivaAdj,saveIvaAdj,ivaAcred,saveIvaAcred}=useContext(TaxCtx);
+  const {months,annualCantidadAPagar}=fiscal.ivaDet;
+  const setAdj=(i,field,val)=>{
+    const next=ivaAdj.map((m,idx)=>idx===i?{...m,[field]:val}:m);
+    saveIvaAdj(next);
+  };
+  const rawVal=(i,field)=>(ivaAdj[i]||{})[field];
+  const numInput=(i,field)=>{
+    const v=rawVal(i,field);
+    return(<input type="number" step="0.01" value={v||v===0?v:''}
+      onChange={e=>setAdj(i,field,e.target.value===''?0:parseFloat(e.target.value)||0)}
+      style={{width:78,padding:'3px 5px',border:'1px solid var(--br)',borderRadius:5,fontSize:11,fontFamily:'var(--mono)',textAlign:'right',background:'#FFFDF5'}}/>);
+  };
+  const ivaAcredInput=(i)=>(
+    <input type="number" step="0.01" value={ivaAcred[i]||''}
+      onChange={e=>{const a=[...ivaAcred];a[i]=parseFloat(e.target.value)||0;saveIvaAcred(a);}}
+      style={{width:78,padding:'3px 5px',border:'1px solid var(--br)',borderRadius:5,fontSize:11,fontFamily:'var(--mono)',textAlign:'right',background:'#FFFDF5'}}/>
+  );
+  return(<div>
+    <div className="sec-hdr"><h3>P.P. IVA — Determinación del Pago Definitivo</h3><p>Formato vertical SAT, replica la hoja "PD IVA" del reporte fiscal · separa el IVA Acreditable del IVA Trasladado/Causado · filas con fondo amarillo son editables por mes.</p></div>
+    <div className="ovr" style={{maxHeight:'72vh'}}>
+      <table className="tbl" style={{fontSize:11.5}}>
+        <thead><tr>
+          <th style={{minWidth:340,position:'sticky',left:0,zIndex:2,background:'var(--s1)'}}>Concepto</th>
+          {months.map(m=><th key={m.i} className="num" style={{minWidth:80}}>{m.mes.slice(0,3)}</th>)}
+        </tr></thead>
+        <tbody>
+          {IVA_ROWS.map((rd,ri)=>{
+            if(rd.section)return(<tr key={'s'+ri}><td colSpan={13} style={{background:'var(--s1)',fontWeight:700,fontSize:11.5,textTransform:'uppercase',letterSpacing:.3,color:'var(--ac)',padding:'8px 10px',position:'sticky',left:0}}>{rd.section}</td></tr>);
+            return(<tr key={rd.row} style={rd.hl?{background:'var(--acb)'}:{}}>
+              <td style={{fontWeight:rd.bold?700:500,fontSize:rd.bold?12.5:11.5,position:'sticky',left:0,background:rd.hl?'var(--acb)':'var(--s)',zIndex:1}}>{rd.label}</td>
+              {months.map((m,i)=>{
+                const v=m[rd.key];
+                if(rd.isDate){
+                  return(<td key={i} className="num"><input type="date" value={rawVal(i,rd.edit)||''} onChange={e=>setAdj(i,rd.edit,e.target.value)} style={{width:98,padding:'3px 4px',border:'1px solid var(--br)',borderRadius:5,fontSize:10.5,background:'#FFFDF5'}}/></td>);
+                }
+                if(rd.ivaAcredRow) return(<td key={i} className="num">{ivaAcredInput(i)}</td>);
+                if(rd.edit) return(<td key={i} className="num">{numInput(i,rd.edit)}</td>);
+                if(rd.decimal) return(<td key={i} className="num" style={{color:'var(--i3)'}}>{v?v.toFixed(4):'—'}</td>);
+                return(<td key={i} className="num" style={{fontWeight:rd.bold?700:400,color:rd.hl?'var(--ac)':'inherit'}}>{v?'$'+mxn(v):'—'}</td>);
+              })}
+            </tr>);
+          })}
+        </tbody>
+        <tfoot><tr style={{background:'var(--acb)'}}>
+          <td style={{fontWeight:700,fontSize:13,position:'sticky',left:0,background:'var(--acb)'}}>Total anual — Cantidad a Pagar</td>
+          {months.map(m=><td key={m.i} className="num" style={{fontWeight:700}}>${mxn(m.r192)}</td>)}
+        </tr></tfoot>
+      </table>
+    </div>
+    <p style={{fontSize:11.5,color:'var(--i3)',marginTop:10}}>Total anual: <b>${mxn(annualCantidadAPagar)}</b>. "Otros Actos ó Actividades Pagados/Gravados a la Tasa del 16%" y el "Impuesto Causado"/"IVA Acreditable" se calculan automáticamente desde Ingresos y Egresos. El acreditamiento de saldo a favor de periodos anteriores es el mismo campo que en Detalle IVA a Favor. El resto de categorías (11%, 0%, exentos, importación, RFN, estímulos, recargos, etc.) se capturan manualmente por mes, igual que en el Excel.</p>
+  </div>);
+}
+
+/* ── RET ISR (formato SAT vertical — replica hoja "ISR Retenciones Serv Prof" del Excel) ── */
+function TaxRetISR(){
+  const {fiscal,retIsrAdj,saveRetIsrAdj}=useContext(TaxCtx);
+  const {months,annualCantidadAPagar}=fiscal.retIsrDet;
+  const setAdj=(i,field,val)=>{
+    const next=retIsrAdj.map((m,idx)=>idx===i?{...m,[field]:val}:m);
+    saveRetIsrAdj(next);
+  };
+  const rawVal=(i,field)=>(retIsrAdj[i]||{})[field];
+  const numInput=(i,field)=>{
+    const v=rawVal(i,field);
+    return(<input type="number" step="0.01" value={v||v===0?v:''}
+      onChange={e=>setAdj(i,field,e.target.value===''?0:parseFloat(e.target.value)||0)}
+      style={{width:78,padding:'3px 5px',border:'1px solid var(--br)',borderRadius:5,fontSize:11,fontFamily:'var(--mono)',textAlign:'right',background:'#FFFDF5'}}/>);
+  };
+  return(<div>
+    <div className="sec-hdr"><h3>ISR Retenciones — Servicios Profesionales</h3><p>Formato vertical SAT, replica la hoja "ISR Retenciones Serv Prof" del reporte fiscal · filas con fondo amarillo son editables por mes.</p></div>
+    <div className="ovr" style={{maxHeight:'72vh'}}>
+      <table className="tbl" style={{fontSize:11.5}}>
+        <thead><tr>
+          <th style={{minWidth:300,position:'sticky',left:0,zIndex:2,background:'var(--s1)'}}>Concepto</th>
+          {months.map(m=><th key={m.i} className="num" style={{minWidth:80}}>{m.mes.slice(0,3)}</th>)}
+          <th className="num" style={{minWidth:90,color:'var(--ac)'}}>Anual</th>
+        </tr></thead>
+        <tbody>
+          {RETISR_ROWS.map(rd=>{
+            const annualVal=months.reduce((s,m)=>s+num(m[rd.key]),0);
+            return(<tr key={rd.row} style={rd.hl?{background:'var(--acb)'}:{}}>
+              <td style={{fontWeight:rd.bold?700:500,fontSize:rd.bold?12.5:11.5,position:'sticky',left:0,background:rd.hl?'var(--acb)':'var(--s)',zIndex:1}}>{rd.label}</td>
+              {months.map((m,i)=>{
+                const v=m[rd.key];
+                if(rd.isDate){
+                  return(<td key={i} className="num"><input type="date" value={rawVal(i,rd.edit)||''} onChange={e=>setAdj(i,rd.edit,e.target.value)} style={{width:98,padding:'3px 4px',border:'1px solid var(--br)',borderRadius:5,fontSize:10.5,background:'#FFFDF5'}}/></td>);
+                }
+                if(rd.edit) return(<td key={i} className="num">{numInput(i,rd.edit)}</td>);
+                return(<td key={i} className="num" style={{fontWeight:rd.bold?700:400,color:rd.hl?'var(--ac)':'inherit'}}>{v?'$'+mxn(v):'—'}</td>);
+              })}
+              <td className="num" style={{fontWeight:700,color:'var(--ac)'}}>{annualVal?'$'+mxn(annualVal):'—'}</td>
+            </tr>);
+          })}
+        </tbody>
+        <tfoot><tr style={{background:'var(--acb)'}}>
+          <td style={{fontWeight:700,fontSize:13,position:'sticky',left:0,background:'var(--acb)'}}>Total anual — Cantidad a Pagar</td>
+          {months.map(m=><td key={m.i} className="num" style={{fontWeight:700}}>${mxn(m.r42)}</td>)}
+          <td className="num" style={{fontWeight:700,color:'var(--ac)'}}>${mxn(annualCantidadAPagar)}</td>
+        </tr></tfoot>
+      </table>
+    </div>
+    <p style={{fontSize:11.5,color:'var(--i3)',marginTop:10}}>"A Cargo" se calcula automáticamente desde Egresos (tipos Servicio Profesional y Arrendamiento) · Art. 106 LISR · Tasa 10%. El resto de las filas —recargos, multas, créditos, estímulos, monto pagado con anterioridad— se capturan manualmente por mes, igual que en el Excel.</p>
+  </div>);
+}
+
+/* ── RET IVA (formato SAT vertical — replica hoja "IVA Retenciones" del Excel) ── */
+function TaxRetIVA(){
+  const {fiscal,retIvaAdj,saveRetIvaAdj}=useContext(TaxCtx);
+  const {months,annualCantidadAPagar}=fiscal.retIvaDet;
+  const setAdj=(i,field,val)=>{
+    const next=retIvaAdj.map((m,idx)=>idx===i?{...m,[field]:val}:m);
+    saveRetIvaAdj(next);
+  };
+  const rawVal=(i,field)=>(retIvaAdj[i]||{})[field];
+  const numInput=(i,field)=>{
+    const v=rawVal(i,field);
+    return(<input type="number" step="0.01" value={v||v===0?v:''}
+      onChange={e=>setAdj(i,field,e.target.value===''?0:parseFloat(e.target.value)||0)}
+      style={{width:78,padding:'3px 5px',border:'1px solid var(--br)',borderRadius:5,fontSize:11,fontFamily:'var(--mono)',textAlign:'right',background:'#FFFDF5'}}/>);
+  };
+  return(<div>
+    <div className="sec-hdr"><h3>IVA Retenciones</h3><p>Formato vertical SAT, replica la hoja "IVA Retenciones" del reporte fiscal · filas con fondo amarillo son editables por mes.</p></div>
+    <div className="ovr" style={{maxHeight:'72vh'}}>
+      <table className="tbl" style={{fontSize:11.5}}>
+        <thead><tr>
+          <th style={{minWidth:300,position:'sticky',left:0,zIndex:2,background:'var(--s1)'}}>Concepto</th>
+          {months.map(m=><th key={m.i} className="num" style={{minWidth:80}}>{m.mes.slice(0,3)}</th>)}
+          <th className="num" style={{minWidth:90,color:'var(--ac)'}}>Anual</th>
+        </tr></thead>
+        <tbody>
+          {RETIVA_ROWS.map(rd=>{
+            const annualVal=months.reduce((s,m)=>s+num(m[rd.key]),0);
+            return(<tr key={rd.row} style={rd.hl?{background:'var(--acb)'}:{}}>
+              <td style={{fontWeight:rd.bold?700:500,fontSize:rd.bold?12.5:11.5,position:'sticky',left:0,background:rd.hl?'var(--acb)':'var(--s)',zIndex:1}}>{rd.label}</td>
+              {months.map((m,i)=>{
+                const v=m[rd.key];
+                if(rd.isDate){
+                  return(<td key={i} className="num"><input type="date" value={rawVal(i,rd.edit)||''} onChange={e=>setAdj(i,rd.edit,e.target.value)} style={{width:98,padding:'3px 4px',border:'1px solid var(--br)',borderRadius:5,fontSize:10.5,background:'#FFFDF5'}}/></td>);
+                }
+                if(rd.edit) return(<td key={i} className="num">{numInput(i,rd.edit)}</td>);
+                return(<td key={i} className="num" style={{fontWeight:rd.bold?700:400,color:rd.hl?'var(--ac)':'inherit'}}>{v?'$'+mxn(v):'—'}</td>);
+              })}
+              <td className="num" style={{fontWeight:700,color:'var(--ac)'}}>{annualVal?'$'+mxn(annualVal):'—'}</td>
+            </tr>);
+          })}
+        </tbody>
+        <tfoot><tr style={{background:'var(--acb)'}}>
+          <td style={{fontWeight:700,fontSize:13,position:'sticky',left:0,background:'var(--acb)'}}>Total anual — Cantidad a Pagar</td>
+          {months.map(m=><td key={m.i} className="num" style={{fontWeight:700}}>${mxn(m.r42)}</td>)}
+          <td className="num" style={{fontWeight:700,color:'var(--ac)'}}>${mxn(annualCantidadAPagar)}</td>
+        </tr></tfoot>
+      </table>
+    </div>
+    <p style={{fontSize:11.5,color:'var(--i3)',marginTop:10}}>"A Cargo" se calcula automáticamente desde Egresos (tipos Servicio Profesional y Arrendamiento) · Art. 1-A LIVA · Retención 2/3 del IVA. El resto de las filas —recargos, multas, créditos, estímulos, monto pagado con anterioridad— se capturan manualmente por mes, igual que en el Excel.</p>
+  </div>);
+}
+
+/* ── XML INGRESOS (facturas CFDI emitidas, con estatus de conciliación contra Ingresos/banco) ── */
+const ING_BLANK={fecha:'',concepto:'',rfc:'',banco:'',subtotal:'',iva:'',base0:'',total:'',tasa:'0.16',tipo:'Normal',notas:''};
+function TaxXmlIngresos(){
+  const {ing,saveIng,banco,saveBanco}=useContext(TaxCtx);
+  const [modal,setModal]=useState(null);// null|'add'|{edit record}
+  const [form,setForm]=useState(ING_BLANK);
+  const [filter,setFilter]=useState('all');
+  const [reconcileFor,setReconcileFor]=useState(null);
+  const fileRef=useRef();
+  const fileRefReplace=useRef();
+  const unlinkAll=async id=>{if(window.confirm('¿Desvincular todos los depósitos ligados a esta factura?'))await saveBanco(banco.map(b=>b.matchTipo==='ingreso'&&b.matchId===id?{...b,matchTipo:null,matchId:null}:b));};
+
+  const openAdd=()=>{setForm({...ING_BLANK,fecha:new Date().toISOString().slice(0,10)});setModal('add');};
+  const openEdit=r=>{setForm({...r});setModal(r);};
+  const close=()=>setModal(null);
+  const fch=k=>e=>{
+    const v=e.target.value;
+    setForm(f=>{
+      const nf={...f,[k]:v};
+      if(k==='subtotal'&&nf.tasa==='0.16'){nf.iva=(num(v)*0.16).toFixed(2);nf.total=(num(v)*1.16).toFixed(2);}
+      if(k==='subtotal'&&nf.tasa!=='0.16'){nf.iva='0.00';nf.total=v;}
+      if(k==='tasa'){if(v==='0.16'){nf.iva=(num(f.subtotal)*0.16).toFixed(2);nf.total=(num(f.subtotal)*1.16).toFixed(2);}else{nf.iva='0.00';nf.total=f.subtotal;}}
+      return nf;
+    });
+  };
+  const save=async()=>{
+    if(!form.fecha||!form.concepto)return alert('Fecha y concepto son requeridos.');
+    if(modal==='add'){await saveIng([{id:uid(),...form},...ing]);}
+    else{await saveIng(ing.map(r=>r.id===modal.id?{...r,...form}:r));}
+    close();
+  };
+  const del=async id=>{if(window.confirm('¿Eliminar este registro?'))await saveIng(ing.filter(r=>r.id!==id));};
+  const readXLS=(file,cb)=>{
+    const rdr=new FileReader();
+    rdr.onload=ev=>{
+      const wb=XLSX.read(ev.target.result,{type:'binary'});
+      const ws=wb.Sheets[wb.SheetNames[0]];
+      const rows=XLSX.utils.sheet_to_json(ws,{defval:''});
+      const mapped=rows
+        .filter(r=>{
+          const tipo=String(r['Tipo']||''),estado=String(r['Estado']||'');
+          if(/P\s*-\s*Pago/i.test(tipo))return false; // excluye complementos de pago
+          if(estado&&!/VIGENTE/i.test(estado))return false; // excluye canceladas
+          return true;
+        })
+        .map(r=>{
+          const rawSub=num(r['Subtotal']||r['SubTotal']||r['Base']||r['subtotal']||0);
+          const ivaAmt=num(r['IVA']||r['IVA Trasladado 16%']||r['Impuesto']||0);
+          const sub16=ivaAmt>0?(ivaAmt/0.16):0;
+          return{id:uid(),
+          fecha:xlsDate(r['Fecha']||r['fecha']||r['Fecha emision']||r['F.Factura']||''),
+          concepto:r['Concepto']||r['Conceptos']||r['Descripcion']||r['concepto']||'',
+          rfc:r['RFC']||r['RFC Receptor']||r['RFC receptor']||'',
+          banco:r['Banco']||r['banco']||'',
+          subtotal:sub16,
+          iva:ivaAmt,
+          base0:Math.max(0,rawSub-sub16),
+          total:r['Total']||r['total']||'',
+          tasa:'0.16',tipo:'Normal',notas:r['Razon receptor']||r['Notas']||'',
+        };})
+        .filter(r=>r.fecha&&r.concepto);
+      cb(mapped);
+    };
+    rdr.readAsBinaryString(file);
+  };
+  const importNew=e=>{
+    const file=e.target.files[0];if(!file)return;
+    readXLS(file,mapped=>{
+      const existing=new Set(ing.map(dupKey));
+      const nuevos=mapped.filter(r=>!existing.has(dupKey(r)));
+      const dupes=mapped.length-nuevos.length;
+      saveIng([...nuevos,...ing]);
+      alert(`${nuevos.length} registros nuevos importados.`+(dupes>0?` ${dupes} ya existían y se omitieron.`:''));
+    });
+    e.target.value='';
+  };
+  const importReplace=e=>{
+    const file=e.target.files[0];if(!file)return;
+    if(!window.confirm('Esto eliminará TODOS los registros actuales de XML Ingresos y los sustituirá por los del archivo. Se perderán las conciliaciones ya hechas con Ingresos. ¿Continuar?'))return;
+    readXLS(file,mapped=>{
+      saveIng(mapped);
+      saveBanco(banco.map(b=>b.matchTipo==='ingreso'?{...b,matchTipo:null,matchId:null}:b));
+      alert(mapped.length+' registros cargados (se sustituyó todo lo anterior).');
+    });
+    e.target.value='';
+  };
+  const concInfo=r=>{
+    const linked=banco.filter(b=>b.matchTipo==='ingreso'&&b.matchId===r.id);
+    const concMonto=linked.reduce((s,b)=>s+num(b.depositos),0);
+    const remanente=num(r.total)-concMonto;
+    const status=concMonto<=0.005?'pendiente':remanente>0.5?'parcial':'conciliado';
+    return{concMonto,remanente,status};
+  };
+  const shown=filter==='all'?ing:ing.filter(r=>concInfo(r).status===filter);
+  const totSub=shown.reduce((s,r)=>s+num(r.subtotal),0);
+  const totIVA=shown.reduce((s,r)=>s+num(r.iva),0);
+  const totBase0=shown.reduce((s,r)=>s+num(r.base0),0);
+  const totConc=ing.filter(r=>concInfo(r).status==='conciliado').length;
+  const totPend=ing.filter(r=>concInfo(r).status==='pendiente').length;
+  const totParcial=ing.filter(r=>concInfo(r).status==='parcial').length;
+  return(<div>
+    <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:14,flexWrap:'wrap',gap:8}}>
+      <div className="sec-hdr" style={{marginBottom:0}}><h3>XML Ingresos</h3><p>Facturas CFDI emitidas · su estatus de conciliación se calcula contra tus depósitos reales en la pestaña Ingresos. Solo lo "Conciliado" alimenta los cálculos fiscales.</p></div>
+      <div style={{display:'flex',gap:6,flexWrap:'wrap'}}>
+        <button className="btn-g" style={{fontSize:12,display:'flex',alignItems:'center',gap:5}} title="Agrega solo las facturas del Excel que no existan ya (compara fecha+RFC+total)" onClick={()=>fileRef.current.click()}><Ic n="upload" sz={13}/>Importar solo nuevos</button>
+        <input ref={fileRef} type="file" accept=".xlsx,.xls" style={{display:'none'}} onChange={importNew}/>
+        <button className="btn-g" style={{fontSize:12,display:'flex',alignItems:'center',gap:5}} title="Elimina todos los registros actuales y los sustituye por los del Excel" onClick={()=>fileRefReplace.current.click()}><Ic n="upload" sz={13}/>Importar reemplazando todo</button>
+        <input ref={fileRefReplace} type="file" accept=".xlsx,.xls" style={{display:'none'}} onChange={importReplace}/>
+        <button className="btn-p" style={{display:'flex',alignItems:'center',gap:5}} onClick={openAdd}><Ic n="plus" sz={13}/>Agregar</button>
+      </div>
+    </div>
+    <div style={{display:'flex',gap:10,marginBottom:14,flexWrap:'wrap',alignItems:'center'}}>
+      {[['all','Todos ('+ing.length+')'],['conciliado','Conciliado ('+totConc+')'],['parcial','Parcial ('+totParcial+')'],['pendiente','Pendiente ('+totPend+')']].map(([v,l])=>(
+        <button key={v} onClick={()=>setFilter(v)} style={{fontSize:12,padding:'4px 12px',borderRadius:20,border:`1px solid ${filter===v?'var(--ac)':'var(--br)'}`,background:filter===v?'var(--acb)':'var(--s)',color:filter===v?'var(--ac)':'var(--i2)',fontWeight:500}}>{l}</button>
+      ))}
+      <span style={{marginLeft:'auto',fontSize:12,color:'var(--i2)'}}>{shown.length} registros · Subtotal: <b>${mxn(totSub)}</b> · IVA: <b>${mxn(totIVA)}</b></span>
+    </div>
+    {shown.length===0?<div className="ph2-box"><div className="icon">💰</div><h4>Sin ingresos registrados</h4><p>Agrega registros manualmente o importa desde tu Excel de OneFact Emitidas.</p></div>
+    :<div className="ovr"><table className="tbl">
+      <thead><tr><th>Fecha</th><th>Concepto</th><th>Banco</th><th className="num">Subtotal 16%</th><th className="num">IVA</th><th className="num">Base 0%/Exento</th><th className="num">Total</th><th>Conciliación</th><th></th></tr></thead>
+      <tbody>{[...shown].sort((a,b)=>new Date(a.fecha)-new Date(b.fecha)).map(r=>{
+        const{remanente,status}=concInfo(r);
+        return(
+        <tr key={r.id}>
+          <td style={{whiteSpace:'nowrap'}}>{r.fecha}</td>
+          <td><div style={{fontWeight:500,maxWidth:220,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{r.notas||r.concepto}</div>{r.rfc&&<div style={{fontSize:10.5,color:'var(--i3)',fontFamily:'var(--mono)'}}>{r.rfc}</div>}</td>
+          <td style={{fontSize:11.5}}>{r.banco||'—'}</td>
+          <td className="num">${mxn(num(r.subtotal))}</td>
+          <td className="num">${mxn(num(r.iva))}</td>
+          <td className="num" style={{color:num(r.base0)?'var(--p)':'var(--i3)'}}>{num(r.base0)?'$'+mxn(num(r.base0)):'—'}</td>
+          <td className="num" style={{fontWeight:500}}>${mxn(num(r.total))}</td>
+          <td>{status==='pendiente'?<button className="btn-g" style={{fontSize:11,padding:'3px 8px'}} onClick={()=>setReconcileFor(r)}>Conciliar</button>:status==='parcial'?<span className="badge bd-w" style={{cursor:'pointer'}} title={'Falta $'+mxn(remanente)+' · clic para desvincular'} onClick={()=>unlinkAll(r.id)}>◐ Parcial · ${mxn(remanente)}</span>:<span className="badge bd-g" style={{cursor:'pointer'}} title="Clic para desvincular" onClick={()=>unlinkAll(r.id)}>✓ Conciliado</span>}</td>
+          <td><div style={{display:'flex',gap:5}}>
+            <button className="btn-g" style={{padding:'4px 8px',fontSize:12}} onClick={()=>openEdit(r)}><Ic n="edit" sz={12}/></button>
+            <button className="btn-r" style={{padding:'4px 8px'}} onClick={()=>del(r.id)}><Ic n="trash" sz={12}/></button>
+          </div></td>
+        </tr>
+      );})}</tbody>
+      <tfoot><tr style={{background:'#FAFBFC'}}><td colSpan="3" style={{fontWeight:700,fontSize:12}}>Acumulado anual</td><td className="num" style={{fontWeight:700}}>${mxn(totSub)}</td><td className="num" style={{fontWeight:700}}>${mxn(totIVA)}</td><td className="num" style={{fontWeight:700,color:'var(--p)'}}>${mxn(totBase0)}</td><td className="num" style={{fontWeight:700}}>${mxn(shown.reduce((s,r)=>s+num(r.total),0))}</td><td></td><td></td></tr></tfoot>
+    </table></div>}
+    {reconcileFor&&<XmlReconcileModal tipo="ingreso" item={reconcileFor} onClose={()=>setReconcileFor(null)}/>}
+    {modal&&(<div className="modal-bg" onClick={e=>{if(e.target===e.currentTarget)close();}}>
+      <div className="modal"><div style={{padding:'18px 20px',borderBottom:'1px solid var(--br)',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+        <h4 style={{fontWeight:600}}>{modal==='add'?'Nuevo ingreso':'Editar ingreso'}</h4>
+        <button style={{background:'none',border:'none',fontSize:20,color:'var(--i3)'}} onClick={close}>×</button>
+      </div>
+      <div style={{padding:'18px 20px',display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+        {[['fecha','Fecha','date'],['concepto','Concepto','text'],['rfc','RFC','text'],['banco','Banco','text']].map(([k,l,t])=>(
+          <div key={k} style={k==='concepto'?{gridColumn:'1/-1'}:{}}><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>{l}</label>
+            <input className="inp" type={t} value={form[k]||''} onChange={fch(k)}/></div>
+        ))}
+        <div><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>Tasa IVA</label>
+          <select className="inp" value={form.tasa} onChange={fch('tasa')}><option value="0.16">16%</option><option value="0">0%</option><option value="exento">Exento</option></select></div>
+        {[['subtotal','Subtotal 16%'],['iva','IVA (auto)'],['base0','Base 0%/Exento'],['total','Total (auto)']].map(([k,l])=>(
+          <div key={k}><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>{l}</label>
+            <input className="inp" type="number" step="0.01" value={form[k]||''} onChange={fch(k)}/></div>
+        ))}
+        <div style={{gridColumn:'1/-1'}}><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>Notas</label>
+          <input className="inp" type="text" value={form.notas||''} onChange={fch('notas')}/></div>
+      </div>
+      <div style={{padding:'0 20px 18px',display:'flex',gap:8}}><button className="btn-p" onClick={save}>Guardar</button><button className="btn-g" onClick={close}>Cancelar</button></div>
+    </div></div>)}
+  </div>);
+}
+
+/* ── XML EGRESOS (facturas CFDI recibidas, con estatus de conciliación contra Egresos/banco) ── */
+const EG_BLANK={fecha:'',concepto:'',rfc:'',banco:'',tipo:'GASTO_ADM',importe:'',subtotal:'',iva:'',base0:'',retISR:'',retIVA:'',total:'',notas:''};
+function TaxXmlEgresos(){
+  const {eg,saveEg,cfg,banco,saveBanco}=useContext(TaxCtx);
+  const [modal,setModal]=useState(null);
+  const [form,setForm]=useState(EG_BLANK);
+  const [filter,setFilter]=useState('all');
+  const [reconcileFor,setReconcileFor]=useState(null);
+  const fileRef=useRef();
+  const fileRefReplace=useRef();
+  const unlinkAll=async id=>{if(window.confirm('¿Desvincular todos los retiros ligados a esta factura?'))await saveBanco(banco.map(b=>b.matchTipo==='egreso'&&b.matchId===id?{...b,matchTipo:null,matchId:null}:b));};
+
+  const openAdd=()=>{setForm({...EG_BLANK,fecha:new Date().toISOString().slice(0,10)});setModal('add');};
+  const openEdit=r=>{setForm({...r});setModal(r);};
+  const close=()=>setModal(null);
+  const fch=k=>e=>{
+    const v=e.target.value;
+    setForm(f=>{
+      const nf={...f,[k]:v};
+      if(k==='tipo'||k==='importe'){
+        const updated=autoEgreso({...nf,[k]:v},cfg);
+        return{...nf,...updated,tipo:nf.tipo,importe:nf.importe,[k]:v,
+          subtotal:updated.subtotal?updated.subtotal.toFixed(2):nf.subtotal,
+          iva:updated.iva?updated.iva.toFixed(2):'0.00',
+          retISR:updated.retISR?updated.retISR.toFixed(2):'0.00',
+          retIVA:updated.retIVA?updated.retIVA.toFixed(2):'0.00',
+        };
+      }
+      return nf;
+    });
+  };
+  const save=async()=>{
+    if(!form.fecha||!form.concepto)return alert('Fecha y concepto son requeridos.');
+    const rec={...form};
+    if(modal==='add'){await saveEg([{id:uid(),...rec},...eg]);}
+    else{await saveEg(eg.map(r=>r.id===modal.id?{...r,...rec}:r));}
+    close();
+  };
+  const del=async id=>{if(window.confirm('¿Eliminar este registro?'))await saveEg(eg.filter(r=>r.id!==id));};
+  const readXLS=(file,cb)=>{
+    const rdr=new FileReader();
+    rdr.onload=ev=>{
+      const wb=XLSX.read(ev.target.result,{type:'binary'});
+      const ws=wb.Sheets[wb.SheetNames[0]];
+      const rows=XLSX.utils.sheet_to_json(ws,{defval:''});
+      const mapped=rows
+        .filter(r=>{
+          const tipo=String(r['Tipo']||''),estado=String(r['Estado']||'');
+          if(/P\s*-\s*Pago/i.test(tipo))return false; // excluye complementos de pago
+          if(estado&&!/VIGENTE/i.test(estado))return false; // excluye canceladas
+          return true;
+        })
+        .map(r=>{
+          const retISR=num(r['RET. ISR HONORARIOS']||r['Ret ISR']||r['ISR Retenido']||0);
+          const retIVA=num(r['RET. IVA']||r['Ret IVA']||r['IVA Retenido']||0);
+          const rawSub=num(r['Subtotal']||r['SubTotal']||r['Gravado']||0);
+          const ivaAmt=num(r['IVA']||r['IVA Trasladado 16%']||0);
+          const sub16=ivaAmt>0?(ivaAmt/0.16):0;
+          return{id:uid(),
+            fecha:xlsDate(r['Fecha']||r['fecha']||r['Fecha emision']||''),
+            concepto:r['Concepto']||r['Conceptos']||r['Proveedor']||r['Descripcion']||'',
+            rfc:r['RFC']||r['RFC emisor']||'',banco:r['Banco']||r['banco']||'',
+            tipo:retISR>0?'SERV_PROF':'GASTO_ADM',importe:r['Importe']||r['Total']||'',
+            subtotal:sub16,
+            iva:ivaAmt,
+            base0:Math.max(0,rawSub-sub16),
+            retISR:retISR||'',retIVA:retIVA||'',
+            total:r['Total']||'',notas:r['Razon emisor']||'',
+          };
+        })
+        .filter(r=>r.fecha&&r.concepto);
+      cb(mapped);
+    };
+    rdr.readAsBinaryString(file);
+  };
+  const importNew=e=>{
+    const file=e.target.files[0];if(!file)return;
+    readXLS(file,mapped=>{
+      const existing=new Set(eg.map(dupKey));
+      const nuevos=mapped.filter(r=>!existing.has(dupKey(r)));
+      const dupes=mapped.length-nuevos.length;
+      saveEg([...nuevos,...eg]);
+      alert(`${nuevos.length} registros nuevos importados.`+(dupes>0?` ${dupes} ya existían y se omitieron.`:''));
+    });
+    e.target.value='';
+  };
+  const importReplace=e=>{
+    const file=e.target.files[0];if(!file)return;
+    if(!window.confirm('Esto eliminará TODOS los registros actuales de XML Egresos y los sustituirá por los del archivo. Se perderán las conciliaciones ya hechas con Egresos. ¿Continuar?'))return;
+    readXLS(file,mapped=>{
+      saveEg(mapped);
+      saveBanco(banco.map(b=>b.matchTipo==='egreso'?{...b,matchTipo:null,matchId:null}:b));
+      alert(mapped.length+' registros cargados (se sustituyó todo lo anterior).');
+    });
+    e.target.value='';
+  };
+  const concInfo=r=>{
+    const linked=banco.filter(b=>b.matchTipo==='egreso'&&b.matchId===r.id);
+    const concMonto=linked.reduce((s,b)=>s+num(b.retiros),0);
+    const remanente=num(r.total)-concMonto;
+    const status=concMonto<=0.005?(NOFACT_TIPOS.includes(r.tipo)?'sinfactura':'pendiente'):remanente>0.5?'parcial':'conciliado';
+    return{concMonto,remanente,status};
+  };
+  const shown=filter==='all'?eg:eg.filter(r=>r.tipo===filter);
+  return(<div>
+    <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:14,flexWrap:'wrap',gap:8}}>
+      <div className="sec-hdr" style={{marginBottom:0}}><h3>XML Egresos</h3><p>Facturas CFDI recibidas · su estatus de conciliación se calcula contra tus retiros reales en la pestaña Egresos. El Tipo determina el tratamiento fiscal automático (IVA, retenciones).</p></div>
+      <div style={{display:'flex',gap:6,flexWrap:'wrap'}}>
+        <button className="btn-g" style={{fontSize:12,display:'flex',alignItems:'center',gap:5}} title="Agrega solo las facturas del Excel que no existan ya (compara fecha+RFC+total)" onClick={()=>fileRef.current.click()}><Ic n="upload" sz={13}/>Importar solo nuevos</button>
+        <input ref={fileRef} type="file" accept=".xlsx,.xls" style={{display:'none'}} onChange={importNew}/>
+        <button className="btn-g" style={{fontSize:12,display:'flex',alignItems:'center',gap:5}} title="Elimina todos los registros actuales y los sustituye por los del Excel" onClick={()=>fileRefReplace.current.click()}><Ic n="upload" sz={13}/>Importar reemplazando todo</button>
+        <input ref={fileRefReplace} type="file" accept=".xlsx,.xls" style={{display:'none'}} onChange={importReplace}/>
+        <button className="btn-p" style={{display:'flex',alignItems:'center',gap:5}} onClick={openAdd}><Ic n="plus" sz={13}/>Agregar</button>
+      </div>
+    </div>
+    <div style={{display:'flex',gap:6,marginBottom:14,flexWrap:'wrap'}}>
+      <button onClick={()=>setFilter('all')} style={{fontSize:12,padding:'4px 12px',borderRadius:20,border:`1px solid ${filter==='all'?'var(--ac)':'var(--br)'}`,background:filter==='all'?'var(--acb)':'var(--s)',color:filter==='all'?'var(--ac)':'var(--i2)',fontWeight:500}}>Todos ({eg.length})</button>
+      {Object.entries(TIPOS).map(([k,t])=>{const n=eg.filter(r=>r.tipo===k).length;return n>0?(<button key={k} onClick={()=>setFilter(k)} style={{fontSize:12,padding:'4px 12px',borderRadius:20,border:`1px solid ${filter===k?'var(--ac)':'var(--br)'}`,background:filter===k?'var(--acb)':'var(--s)',color:filter===k?'var(--ac)':'var(--i2)',fontWeight:500}}>{t.label} ({n})</button>):null;})}
+    </div>
+    {shown.length===0?<div className="ph2-box"><div className="icon">💸</div><h4>Sin egresos registrados</h4><p>Agrega registros manualmente o importa desde tu Excel de OneFact Egresos. El tipo determinará el tratamiento fiscal automáticamente.</p></div>
+    :<div className="ovr"><table className="tbl">
+      <thead><tr><th>Fecha</th><th>Concepto/RFC</th><th>Tipo</th><th className="num">Subtotal 16%</th><th className="num">IVA</th><th className="num">Base 0%/Exento</th><th className="num">Ret. ISR</th><th className="num">Ret. IVA</th><th className="num">Total</th><th>Conciliación</th><th></th></tr></thead>
+      <tbody>{[...shown].sort((a,b)=>new Date(a.fecha)-new Date(b.fecha)).map(r=>{
+        const{remanente,status}=concInfo(r);
+        return(
+        <tr key={r.id}>
+          <td style={{whiteSpace:'nowrap'}}>{r.fecha}</td>
+          <td><div style={{fontWeight:500,maxWidth:200,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{r.notas||r.concepto}</div>{r.rfc&&<div style={{fontSize:10.5,color:'var(--i3)',fontFamily:'var(--mono)'}}>{r.rfc}</div>}</td>
+          <td><span className={'badge '+(r.tipo==='SERV_PROF'||r.tipo==='ARRENDAMIENTO'?'bd-w':r.tipo==='SAT'?'bd-r':'bd-p')}>{TIPOS[r.tipo]?.label||r.tipo}</span></td>
+          <td className="num">{num(r.subtotal)?'$'+mxn(num(r.subtotal)):'—'}</td>
+          <td className="num">{num(r.iva)?'$'+mxn(num(r.iva)):'—'}</td>
+          <td className="num" style={{color:num(r.base0)?'var(--p)':'var(--i3)'}}>{num(r.base0)?'$'+mxn(num(r.base0)):'—'}</td>
+          <td className="num" style={{color:num(r.retISR)?'var(--r)':'var(--i3)'}}>{num(r.retISR)?'$'+mxn(num(r.retISR)):'—'}</td>
+          <td className="num" style={{color:num(r.retIVA)?'var(--r)':'var(--i3)'}}>{num(r.retIVA)?'$'+mxn(num(r.retIVA)):'—'}</td>
+          <td className="num" style={{fontWeight:500}}>${mxn(num(r.total))}</td>
+          <td>{status==='sinfactura'?<span className="badge bd-p">Sin factura</span>:status==='pendiente'?<button className="btn-g" style={{fontSize:11,padding:'3px 8px'}} onClick={()=>setReconcileFor(r)}>Conciliar</button>:status==='parcial'?<span className="badge bd-w" style={{cursor:'pointer'}} title={'Falta $'+mxn(remanente)+' · clic para desvincular'} onClick={()=>unlinkAll(r.id)}>◐ Parcial · ${mxn(remanente)}</span>:<span className="badge bd-g" style={{cursor:'pointer'}} title="Clic para desvincular" onClick={()=>unlinkAll(r.id)}>✓ Conciliado</span>}</td>
+          <td><div style={{display:'flex',gap:5}}>
+            <button className="btn-g" style={{padding:'4px 8px',fontSize:12}} onClick={()=>openEdit(r)}><Ic n="edit" sz={12}/></button>
+            <button className="btn-r" style={{padding:'4px 8px'}} onClick={()=>del(r.id)}><Ic n="trash" sz={12}/></button>
+          </div></td>
+        </tr>
+      );})}</tbody>
+      <tfoot><tr style={{background:'#FAFBFC'}}><td colSpan="3" style={{fontWeight:700,fontSize:12}}>Acumulado anual</td><td className="num" style={{fontWeight:700}}>${mxn(shown.reduce((s,r)=>s+num(r.subtotal),0))}</td><td className="num" style={{fontWeight:700}}>${mxn(shown.reduce((s,r)=>s+num(r.iva),0))}</td><td className="num" style={{fontWeight:700,color:'var(--p)'}}>${mxn(shown.reduce((s,r)=>s+num(r.base0),0))}</td><td className="num" style={{fontWeight:700,color:'var(--r)'}}>${mxn(shown.reduce((s,r)=>s+num(r.retISR),0))}</td><td className="num" style={{fontWeight:700,color:'var(--r)'}}>${mxn(shown.reduce((s,r)=>s+num(r.retIVA),0))}</td><td className="num" style={{fontWeight:700}}>${mxn(shown.reduce((s,r)=>s+num(r.total),0))}</td><td></td><td></td></tr></tfoot>
+    </table></div>}
+    {reconcileFor&&<XmlReconcileModal tipo="egreso" item={reconcileFor} onClose={()=>setReconcileFor(null)}/>}
+    {modal&&(<div className="modal-bg" onClick={e=>{if(e.target===e.currentTarget)close();}}>
+      <div className="modal"><div style={{padding:'18px 20px',borderBottom:'1px solid var(--br)',display:'flex',justifyContent:'space-between'}}>
+        <h4 style={{fontWeight:600}}>{modal==='add'?'Nuevo egreso':'Editar egreso'}</h4>
+        <button style={{background:'none',border:'none',fontSize:20,color:'var(--i3)'}} onClick={close}>×</button>
+      </div>
+      <div style={{padding:'18px 20px',display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+        {[['fecha','Fecha','date'],['concepto','Concepto','text'],['rfc','RFC','text'],['banco','Banco','text']].map(([k,l,t])=>(
+          <div key={k} style={k==='concepto'?{gridColumn:'1/-1'}:{}}><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>{l}</label>
+            <input className="inp" type={t} value={form[k]||''} onChange={fch(k)}/></div>
+        ))}
+        <div style={{gridColumn:'1/-1'}}><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>Tipo <span style={{fontWeight:400,color:'var(--i3)'}}>(determina ISR/IVA automáticamente)</span></label>
+          <select className="inp" value={form.tipo} onChange={fch('tipo')}>{Object.entries(TIPOS).map(([k,t])=><option key={k} value={k}>{t.label} {t.retISR?'· Ret. ISR 10%':''}{t.retIVA?' · Ret. IVA 2/3':''}{!t.iva&&k!=='SAT'?' · Sin IVA':''}{k==='SAT'?' · Sin impuestos':''}</option>)}</select></div>
+        <div><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>Importe total pagado</label>
+          <input className="inp" type="number" step="0.01" value={form.importe||''} onChange={fch('importe')}/></div>
+        {[['subtotal','Subtotal 16% (auto)'],['iva','IVA (auto)'],['base0','Base 0%/Exento'],['retISR','Ret. ISR (auto)'],['retIVA','Ret. IVA (auto)']].map(([k,l])=>(
+          <div key={k}><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>{l}</label>
+            <input className="inp" type="number" step="0.01" value={form[k]||''} onChange={fch(k)} style={{background:'#FAFBFC'}}/></div>
+        ))}
+        <div style={{gridColumn:'1/-1'}}><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>Notas</label>
+          <input className="inp" type="text" value={form.notas||''} onChange={fch('notas')}/></div>
+      </div>
+      <div style={{padding:'0 20px 18px',display:'flex',gap:8}}><button className="btn-p" onClick={save}>Guardar</button><button className="btn-g" onClick={close}>Cancelar</button></div>
+    </div></div>)}
+  </div>);
+}
+
+/* ── PHASE 2 SECTIONS ── */
+/* ── DETALLE IVA / ISR A FAVOR ── */
+function FavorTable({tipo}){
+  const ctx=useContext(TaxCtx);
+  const isIVA=tipo==='iva';
+  const data=isIVA?ctx.ivaFav:ctx.isrFav;
+  const save=isIVA?ctx.saveIvaFav:ctx.saveIsrFav;
+  const MN=MESES;
+  const [modal,setModal]=useState(null);
+  const blank=isIVA
+    ?{anio:'2025',mes:'',tipo:'Normal',operacion:'',fechaPresentacion:'',saldoFavor:'',acreditamientos:{}}
+    :{anio:'2025',tipo:'Normal',operacion:'',fechaPresentacion:'',saldoFavor:'',acreditamientos:{}};
+  const [form,setForm]=useState(blank);
+  const openAdd=()=>{setForm(blank);setModal('add');};
+  const openEdit=r=>{setForm({...r,acreditamientos:{...r.acreditamientos}});setModal(r);};
+  const close=()=>setModal(null);
+  const totalAcred=r=>Object.values(r.acreditamientos||{}).reduce((s,v)=>s+num(v),0);
+  const disponible=r=>num(r.saldoFavor)+totalAcred(r); // acreditamientos son negativos
+  const saveRec=async()=>{
+    if(!form.saldoFavor)return alert('Captura el saldo a favor.');
+    if(modal==='add'){await save([...data,{id:uid(),...form,saldoFavor:num(form.saldoFavor)}]);}
+    else{await save(data.map(x=>x.id===modal.id?{...form,saldoFavor:num(form.saldoFavor)}:x));}
+    close();
+  };
+  const del=async id=>{if(window.confirm('¿Eliminar registro?'))await save(data.filter(x=>x.id!==id));};
+  const totSaldo=data.reduce((s,r)=>s+num(r.saldoFavor),0);
+  const totAcred=data.reduce((s,r)=>s+totalAcred(r),0);
+  const totDisp=data.reduce((s,r)=>s+disponible(r),0);
+  return(<div>
+    <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:14,flexWrap:'wrap',gap:8}}>
+      <div className="sec-hdr" style={{marginBottom:0}}><h3>Detalle {isIVA?'IVA':'ISR'} a Favor</h3><p>Saldos a favor de {isIVA?'IVA':'ISR'} con acreditamientos mensuales y remanente disponible.</p></div>
+      <button className="btn-p" style={{display:'flex',alignItems:'center',gap:5}} onClick={openAdd}><Ic n="plus" sz={13}/>Agregar saldo</button>
+    </div>
+    <div className="kpi-grid">
+      <div className="kpi"><p>Saldo a favor total</p><p>${mxn(totSaldo)}</p></div>
+      <div className="kpi"><p>Acreditamientos aplicados</p><p style={{color:'var(--r)'}}>${mxn(totAcred)}</p></div>
+      <div className="kpi"><p>Disponible (remanente)</p><p style={{color:'var(--g)'}}>${mxn(totDisp)}</p></div>
+    </div>
+    {data.length===0?<div className="ph2-box"><div className="icon">✅</div><h4>Sin saldos a favor</h4><p>Agrega tus saldos a favor históricos con el botón de arriba.</p></div>
+    :<div className="ovr" style={{maxHeight:'72vh'}}><table className="tbl" style={{fontSize:11.5}}>
+      <thead><tr>
+        <th style={{position:'sticky',left:0,zIndex:2,background:'var(--s1)',minWidth:70}}>Año</th>
+        {isIVA&&<th style={{minWidth:90}}>Mes</th>}
+        <th style={{minWidth:110}}>Tipo</th>
+        <th style={{minWidth:120}}>No. Operación</th>
+        <th style={{minWidth:90}}>Fecha Pres.</th>
+        <th className="num" style={{minWidth:110,borderRight:'2px solid var(--brs)'}}>Saldo a Favor</th>
+        {MN.map(m=><th key={m} className="num" style={{minWidth:72}}>{m.slice(0,3)}</th>)}
+        <th className="num" style={{minWidth:110,borderLeft:'2px solid var(--brs)',color:'var(--ac)'}}>Disponible</th>
+        <th style={{minWidth:80}}></th>
+      </tr></thead>
+      <tbody>{data.map(r=>(
+        <tr key={r.id}>
+          <td style={{position:'sticky',left:0,zIndex:1,background:'var(--s)',fontWeight:600}}>{r.anio}</td>
+          {isIVA&&<td>{r.mes}</td>}
+          <td><span className="badge bd-b">{r.tipo}</span></td>
+          <td style={{fontFamily:'var(--mono)',fontSize:11}}>{r.operacion||'—'}</td>
+          <td style={{fontSize:11.5}}>{r.fechaPresentacion||'—'}</td>
+          <td className="num" style={{fontWeight:600,borderRight:'2px solid var(--br)'}}>${mxn(num(r.saldoFavor))}</td>
+          {MN.map(m=><td key={m} className="num" style={{color:r.acreditamientos&&r.acreditamientos[m]?'var(--r)':'var(--i3)'}}>{r.acreditamientos&&r.acreditamientos[m]?mxn(num(r.acreditamientos[m])):'—'}</td>)}
+          <td className="num" style={{fontWeight:700,borderLeft:'2px solid var(--br)',color:disponible(r)>0?'var(--g)':'var(--i3)'}}>${mxn(disponible(r))}</td>
+          <td><div style={{display:'flex',gap:5}}><button className="btn-g" style={{padding:'4px 8px'}} onClick={()=>openEdit(r)}><Ic n="edit" sz={12}/></button><button className="btn-r" style={{padding:'4px 8px'}} onClick={()=>del(r.id)}><Ic n="trash" sz={12}/></button></div></td>
+        </tr>
+      ))}</tbody>
+      <tfoot><tr style={{background:'var(--acb)'}}>
+        <td style={{position:'sticky',left:0,zIndex:1,background:'var(--acb)',fontWeight:700}} colSpan={isIVA?5:4}>Totales</td>
+        <td className="num" style={{fontWeight:700,borderRight:'2px solid var(--acs)'}}>${mxn(totSaldo)}</td>
+        {MN.map(m=><td key={m} className="num" style={{fontWeight:600,color:'var(--r)'}}>{mxn(data.reduce((s,r)=>s+num(r.acreditamientos&&r.acreditamientos[m]),0))}</td>)}
+        <td className="num" style={{fontWeight:700,borderLeft:'2px solid var(--acs)',color:'var(--g)'}}>${mxn(totDisp)}</td>
+        <td></td>
+      </tr></tfoot>
+    </table></div>}
+    {modal&&(<div className="modal-bg" onClick={e=>{if(e.target===e.currentTarget)close();}}>
+      <div className="modal" style={{maxWidth:680}}><div style={{padding:'18px 20px',borderBottom:'1px solid var(--br)',display:'flex',justifyContent:'space-between'}}><h4 style={{fontWeight:600}}>{modal==='add'?'Nuevo saldo a favor':'Editar saldo a favor'}</h4><button style={{background:'none',border:'none',fontSize:20,color:'var(--i3)'}} onClick={close}>×</button></div>
+      <div style={{padding:'18px 20px',display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:12}}>
+        <div><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>Año</label><input className="inp" value={form.anio||''} onChange={e=>setForm({...form,anio:e.target.value})}/></div>
+        {isIVA&&<div><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>Mes</label><input className="inp" value={form.mes||''} onChange={e=>setForm({...form,mes:e.target.value})}/></div>}
+        <div><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>Tipo</label><select className="inp" value={form.tipo} onChange={e=>setForm({...form,tipo:e.target.value})}><option>Normal</option><option>Complementaria</option></select></div>
+        <div><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>No. Operación</label><input className="inp" value={form.operacion||''} onChange={e=>setForm({...form,operacion:e.target.value})}/></div>
+        <div><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>Fecha presentación</label><input className="inp" type="date" value={form.fechaPresentacion||''} onChange={e=>setForm({...form,fechaPresentacion:e.target.value})}/></div>
+        <div><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>Saldo a favor</label><input className="inp" type="number" step="0.01" value={form.saldoFavor||''} onChange={e=>setForm({...form,saldoFavor:e.target.value})}/></div>
+        <div style={{gridColumn:'1/-1',borderTop:'1px solid var(--br)',paddingTop:12}}><p style={{fontSize:12,fontWeight:600,marginBottom:8}}>Acreditamientos por mes (captura negativo para disminuir)</p>
+          <div style={{display:'grid',gridTemplateColumns:'repeat(6,1fr)',gap:8}}>
+            {MN.map(m=>(<div key={m}><label style={{fontSize:10.5,color:'var(--i3)',display:'block',marginBottom:2}}>{m.slice(0,3)}</label><input className="inp" type="number" step="0.01" style={{padding:'5px',fontSize:11.5}} value={form.acreditamientos[m]||''} onChange={e=>setForm({...form,acreditamientos:{...form.acreditamientos,[m]:e.target.value}})}/></div>))}
+          </div>
+        </div>
+      </div>
+      <div style={{padding:'0 20px 18px',display:'flex',gap:8}}><button className="btn-p" onClick={saveRec}>Guardar</button><button className="btn-g" onClick={close}>Cancelar</button></div>
+    </div></div>)}
+  </div>);
+}
+
+/* ── ESTADO DE CUENTA INVERSIÓN ── */
+function TaxInversion(){
+  const {inversion,saveInversion}=useContext(TaxCtx);
+  const [modal,setModal]=useState(null);
+  const blank={mes:'',fecha:'',concepto:'Rendimiento e ISR retenido',rendimiento:'',isrRetenido:''};
+  const [form,setForm]=useState(blank);
+  const totRend=inversion.reduce((s,r)=>s+num(r.rendimiento),0);
+  const totISR=inversion.reduce((s,r)=>s+num(r.isrRetenido),0);
+  const openAdd=()=>{setForm(blank);setModal('add');};
+  const openAddForMonth=i=>{
+    const fecha=new Date(2026,i+1,0).toISOString().slice(0,10);
+    setForm({...blank,mes:MESES[i],fecha});
+    setModal('add');
+  };
+  const openEdit=r=>{setForm({...r});setModal(r);};
+  const close=()=>setModal(null);
+  const saveRec=async()=>{
+    if(!form.fecha||!form.rendimiento)return alert('Captura fecha y rendimiento.');
+    const rec={...form,rendimiento:num(form.rendimiento),isrRetenido:num(form.isrRetenido)};
+    if(modal==='add')await saveInversion([...inversion,{id:uid(),...rec}]);
+    else await saveInversion(inversion.map(x=>(x.id||x.mes)===(modal.id||modal.mes)?{...x,...rec}:x));
+    close();
+  };
+  const del=async r=>{if(window.confirm('¿Eliminar?'))await saveInversion(inversion.filter(x=>x!==r));};
+  const byMonth=MESES.map((mes,i)=>({mes,i,recs:inversion.filter(r=>getM(r.fecha)===i)}));
+  return(<div>
+    <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:14,flexWrap:'wrap',gap:8}}>
+      <div className="sec-hdr" style={{marginBottom:0}}><h3>Estado de Cuenta de Inversiones</h3><p>Rendimientos e ISR retenido por el banco · Cuenta de inversión Banamex · igual que el Edo. de Cuenta, agrupado mes por mes.</p></div>
+      <button className="btn-p" style={{display:'flex',alignItems:'center',gap:5}} onClick={openAdd}><Ic n="plus" sz={13}/>Agregar</button>
+    </div>
+    <div style={{marginBottom:16}}>
+      <p style={{fontSize:11,letterSpacing:1,textTransform:'uppercase',color:'var(--i3)',fontWeight:600,marginBottom:8}}>Resumen Acumulado 2026</p>
+      <div className="kpi-grid" style={{marginBottom:0}}>
+        <div className="kpi"><p>Ganancia por inversión (rendimientos)</p><p style={{color:'var(--g)'}}>${mxn(totRend)}</p></div>
+        <div className="kpi"><p>ISR retenido por el banco (acreditable)</p><p style={{color:'var(--r)'}}>${mxn(totISR)}</p></div>
+      </div>
+    </div>
+    <div style={{display:'flex',flexDirection:'column',gap:10}}>
+      {byMonth.map(({mes,i,recs})=>{
+        const mRend=recs.reduce((s,r)=>s+num(r.rendimiento),0);
+        const mISR=recs.reduce((s,r)=>s+num(r.isrRetenido),0);
+        const has=recs.length>0;
+        return(<div key={mes} className="card" style={{padding:0,overflow:'hidden',opacity:has?1:0.6}}>
+          <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'9px 14px',background:has?'var(--acb)':'var(--s1)',borderBottom:has?'1px solid var(--acs)':'1px solid var(--br)'}}>
+            <span style={{fontWeight:700,fontSize:13,color:has?'var(--ac)':'var(--i2)'}}>{mes.toUpperCase()} 2026</span>
+            <div style={{display:'flex',alignItems:'center',gap:10}}>
+              {has&&<span style={{fontSize:12,fontFamily:'var(--mono)'}}><span style={{color:'var(--g)'}}>${mxn(mRend)}</span>{' · '}<span style={{color:'var(--r)'}}>${mxn(mISR)}</span></span>}
+              <button className="btn-g" style={{padding:'3px 9px',fontSize:11,display:'flex',alignItems:'center',gap:4}} onClick={()=>openAddForMonth(i)}><Ic n="plus" sz={11}/>Agregar</button>
+            </div>
+          </div>
+          {!has
+            ?<p style={{padding:'11px 14px',fontSize:12.5,color:'var(--i3)',fontStyle:'italic'}}>Sin rendimientos en el periodo</p>
+            :<table className="tbl">
+              <thead><tr><th style={{fontSize:10}}>Fecha</th><th style={{fontSize:10}}>Concepto</th><th className="num" style={{fontSize:10}}>Rendimiento</th><th className="num" style={{fontSize:10}}>ISR Retenido</th><th></th></tr></thead>
+              <tbody>{recs.map((r,ri)=>(
+                <tr key={ri}><td style={{whiteSpace:'nowrap'}}>{r.fecha}</td><td>{r.concepto}</td>
+                  <td className="num" style={{fontWeight:500,color:'var(--g)'}}>${mxn(num(r.rendimiento))}</td>
+                  <td className="num" style={{color:'var(--r)'}}>${mxn(num(r.isrRetenido))}</td>
+                  <td><div style={{display:'flex',gap:5}}><button className="btn-g" style={{padding:'4px 8px'}} onClick={()=>openEdit(r)}><Ic n="edit" sz={12}/></button><button className="btn-r" style={{padding:'4px 8px'}} onClick={()=>del(r)}><Ic n="trash" sz={12}/></button></div></td>
+                </tr>
+              ))}</tbody>
+              <tfoot><tr style={{background:'#FAFBFC'}}><td colSpan="2" style={{fontWeight:700,fontSize:12}}>Total del mes</td><td className="num" style={{fontWeight:700,color:'var(--g)'}}>${mxn(mRend)}</td><td className="num" style={{fontWeight:700,color:'var(--r)'}}>${mxn(mISR)}</td><td></td></tr></tfoot>
+            </table>}
+        </div>);
+      })}
+    </div>
+    <p style={{fontSize:11.5,color:'var(--i3)',marginTop:12}}>El ISR retenido por inversiones se acredita en el cálculo de P.P. ISR (impuesto retenido del mes). Usa "Agregar" en cada mes para capturar el rendimiento que reporta el banco.</p>
+    {modal&&(<div className="modal-bg" onClick={e=>{if(e.target===e.currentTarget)close();}}>
+      <div className="modal" style={{maxWidth:440}}><div style={{padding:'18px 20px',borderBottom:'1px solid var(--br)',display:'flex',justifyContent:'space-between'}}><h4 style={{fontWeight:600}}>{modal==='add'?'Nuevo rendimiento':'Editar'}</h4><button style={{background:'none',border:'none',fontSize:20,color:'var(--i3)'}} onClick={close}>×</button></div>
+      <div style={{padding:'18px 20px',display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+        <div><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>Mes</label><input className="inp" value={form.mes||''} onChange={e=>setForm({...form,mes:e.target.value})}/></div>
+        <div><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>Fecha</label><input className="inp" type="date" value={form.fecha||''} onChange={e=>setForm({...form,fecha:e.target.value})}/></div>
+        <div style={{gridColumn:'1/-1'}}><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>Concepto</label><input className="inp" value={form.concepto||''} onChange={e=>setForm({...form,concepto:e.target.value})}/></div>
+        <div><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>Rendimiento</label><input className="inp" type="number" step="0.01" value={form.rendimiento||''} onChange={e=>setForm({...form,rendimiento:e.target.value})}/></div>
+        <div><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>ISR Retenido</label><input className="inp" type="number" step="0.01" value={form.isrRetenido||''} onChange={e=>setForm({...form,isrRetenido:e.target.value})}/></div>
+      </div>
+      <div style={{padding:'0 20px 18px',display:'flex',gap:8}}><button className="btn-p" onClick={saveRec}>Guardar</button><button className="btn-g" onClick={close}>Cancelar</button></div>
+    </div></div>)}
+  </div>);
+}
+
+function TaxPh2({icon,title,desc}){return(<div className="ph2-box"><div className="icon">{icon}</div><h4>{title}</h4><p>{desc}</p><div style={{marginTop:16,display:'inline-block',background:'var(--acb)',color:'var(--ac)',borderRadius:20,padding:'4px 14px',fontSize:12,fontWeight:600}}>Próximamente</div></div>);}
+
+/* ── EDO. CTA. BANCARIO (replica hoja "EdoCuentaBanamexCheques" del Excel, agrupado por mes, con conciliación) ── */
+const BANCO_BLANK={fecha:'',concepto:'',retiros:'',depositos:''};
+function TaxBancoTipo({tipo}){
+  const isIng=tipo==='ingreso';
+  const field=isIng?'depositos':'retiros';
+  const color=isIng?'var(--g)':'var(--r)';
+  const {banco,saveBanco}=useContext(TaxCtx);
+  const [modal,setModal]=useState(null);
+  const [form,setForm]=useState(BANCO_BLANK);
+  const fileRef=useRef();
+  const shown=banco.filter(r=>num(r[field])>0);
+  const openAdd=()=>{setForm(BANCO_BLANK);setModal('add');};
+  const importXLS=e=>{
+    const file=e.target.files[0];if(!file)return;
+    const rdr=new FileReader();
+    rdr.onload=ev=>{
+      const wb=XLSX.read(ev.target.result,{type:'binary'});
+      const ws=wb.Sheets[wb.SheetNames[0]];
+      const rows=XLSX.utils.sheet_to_json(ws,{defval:''});
+      const mapped=rows.map(r=>{
+        const concepto=r['Concepto']||r['concepto']||r['Descripcion']||'';
+        return{id:uid(),
+          fecha:xlsDate(r['Fecha']||r['fecha']||''),
+          concepto,
+          retiros:num(r['Retiros']||r['retiros']||0),
+          depositos:num(r['Depositos']||r['Depósitos']||r['depositos']||0),
+          sinFactura:guessSinFactura(concepto),
+        };
+      }).filter(r=>r.fecha&&(r.retiros>0||r.depositos>0));
+      const existing=new Set(banco.map(bankDupKey));
+      const nuevos=mapped.filter(r=>!existing.has(bankDupKey(r)));
+      const dupes=mapped.length-nuevos.length;
+      saveBanco([...nuevos,...banco]);
+      alert(`${nuevos.length} movimientos nuevos importados.`+(dupes>0?` ${dupes} ya existían y se omitieron.`:''));
+    };
+    rdr.readAsBinaryString(file);
+    e.target.value='';
+  };
+  const openAddForMonth=i=>{
+    const fecha=new Date(2026,i+1,0).toISOString().slice(0,10);
+    setForm({...BANCO_BLANK,fecha});
+    setModal('add');
+  };
+  const openEdit=r=>{setForm({...r});setModal(r);};
+  const close=()=>setModal(null);
+  const saveRec=async()=>{
+    if(!form.fecha||!form.concepto)return alert('Captura fecha y concepto.');
+    const rec={...form,retiros:isIng?0:num(form.retiros),depositos:isIng?num(form.depositos):0};
+    if(modal==='add')await saveBanco([{id:uid(),...rec,sinFactura:guessSinFactura(rec.concepto)},...banco]);
+    else await saveBanco(banco.map(x=>x.id===modal.id?{...x,...rec}:x));
+    close();
+  };
+  const del=async id=>{if(window.confirm('¿Eliminar este movimiento?'))await saveBanco(banco.filter(x=>x.id!==id));};
+  const byMonth=MESES.map((mes,i)=>({mes,i,recs:shown.filter(r=>getM(r.fecha)===i).sort((a,b)=>new Date(a.fecha)-new Date(b.fecha))}));
+  return(<div>
+    <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:14,flexWrap:'wrap',gap:8}}>
+      <div className="sec-hdr" style={{marginBottom:0}}><h3>{isIng?'Ingresos':'Egresos'}</h3><p>{isIng?'Depósitos':'Retiros'} reales de tu estado de cuenta Banamex Cheques (52000040289) — igual que el PDF, sin nada más.</p></div>
+      <div style={{display:'flex',gap:6,flexWrap:'wrap'}}>
+        <button className="btn-g" style={{fontSize:12,display:'flex',alignItems:'center',gap:5}} title="Carga un Excel con columnas Fecha, Concepto, Retiros, Depósitos — reparte automáticamente entre Ingresos y Egresos. No importa desde cuál pestaña lo subas." onClick={()=>fileRef.current.click()}><Ic n="upload" sz={13}/>Importar estado de cuenta</button>
+        <input ref={fileRef} type="file" accept=".xlsx,.xls" style={{display:'none'}} onChange={importXLS}/>
+        <button className="btn-p" style={{display:'flex',alignItems:'center',gap:5}} onClick={openAdd}><Ic n="plus" sz={13}/>Agregar</button>
+      </div>
+    </div>
+    <div style={{display:'flex',flexDirection:'column',gap:10}}>
+      {byMonth.map(({mes,i,recs})=>{
+        const mTot=recs.reduce((s,r)=>s+num(r[field]),0);
+        const has=recs.length>0;
+        return(<div key={mes} className="card" style={{padding:0,overflow:'hidden',opacity:has?1:0.6}}>
+          <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'9px 14px',background:has?'var(--acb)':'var(--s1)',borderBottom:has?'1px solid var(--acs)':'1px solid var(--br)'}}>
+            <span style={{fontWeight:700,fontSize:13,color:has?'var(--ac)':'var(--i2)'}}>{mes.toUpperCase()} 2026{has&&<span style={{marginLeft:8,fontWeight:500,fontSize:11,color:'var(--i3)'}}>· {recs.length} movimientos</span>}</span>
+            <div style={{display:'flex',alignItems:'center',gap:10}}>
+              {has&&<span style={{fontSize:12,fontFamily:'var(--mono)',color}}>${mxn(mTot)}</span>}
+              <button className="btn-g" style={{padding:'3px 9px',fontSize:11,display:'flex',alignItems:'center',gap:4}} onClick={()=>openAddForMonth(i)}><Ic n="plus" sz={11}/>Agregar</button>
+            </div>
+          </div>
+          {!has
+            ?<p style={{padding:'11px 14px',fontSize:12.5,color:'var(--i3)',fontStyle:'italic'}}>Sin movimientos en el periodo</p>
+            :<table className="tbl">
+              <thead><tr><th style={{fontSize:10,minWidth:64}}>Fecha</th><th style={{fontSize:10}}>Concepto</th><th className="num" style={{fontSize:10}}>{isIng?'Depósitos':'Retiros'}</th><th></th></tr></thead>
+              <tbody>{recs.map(r=>(
+                <tr key={r.id}><td style={{whiteSpace:'nowrap'}}>{r.fecha}</td><td>{r.concepto}</td>
+                  <td className="num" style={{color,fontWeight:500}}>${mxn(num(r[field]))}</td>
+                  <td><div style={{display:'flex',gap:5}}><button className="btn-g" style={{padding:'4px 8px'}} onClick={()=>openEdit(r)}><Ic n="edit" sz={12}/></button><button className="btn-r" style={{padding:'4px 8px'}} onClick={()=>del(r.id)}><Ic n="trash" sz={12}/></button></div></td>
+                </tr>
+              ))}</tbody>
+              <tfoot><tr style={{background:'#FAFBFC'}}><td colSpan="2" style={{fontWeight:700,fontSize:12}}>Total del mes</td><td className="num" style={{fontWeight:700,color}}>${mxn(mTot)}</td><td></td></tr></tfoot>
+            </table>}
+        </div>);
+      })}
+    </div>
+    {modal&&(<div className="modal-bg" onClick={e=>{if(e.target===e.currentTarget)close();}}>
+      <div className="modal" style={{maxWidth:460}}><div style={{padding:'18px 20px',borderBottom:'1px solid var(--br)',display:'flex',justifyContent:'space-between'}}><h4 style={{fontWeight:600}}>{modal==='add'?'Nuevo movimiento':'Editar movimiento'}</h4><button style={{background:'none',border:'none',fontSize:20,color:'var(--i3)'}} onClick={close}>×</button></div>
+      <div style={{padding:'18px 20px',display:'grid',gridTemplateColumns:'1fr 1fr',gap:12}}>
+        <div><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>Fecha</label><input className="inp" type="date" value={form.fecha||''} onChange={e=>setForm({...form,fecha:e.target.value})}/></div>
+        <div><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>{isIng?'Depósito':'Retiro'}</label><input className="inp" type="number" step="0.01" value={form[field]||''} onChange={e=>setForm({...form,[field]:e.target.value})}/></div>
+        <div style={{gridColumn:'1/-1'}}><label style={{fontSize:11.5,fontWeight:500,display:'block',marginBottom:3}}>Concepto</label><input className="inp" value={form.concepto||''} onChange={e=>setForm({...form,concepto:e.target.value})}/></div>
+      </div>
+      <div style={{padding:'0 20px 18px',display:'flex',gap:8}}><button className="btn-p" onClick={saveRec}>Guardar</button><button className="btn-g" onClick={close}>Cancelar</button></div>
+    </div></div>)}
+  </div>);
+}
+function TaxIngresos(){return <TaxBancoTipo tipo="ingreso"/>;}
+function TaxEgresos(){return <TaxBancoTipo tipo="egreso"/>;}
+
+function XmlReconcileModal({tipo,item,onClose}){
+  const {banco,saveBanco}=useContext(TaxCtx);
+  const [allMonths,setAllMonths]=useState(false);
+  const field=tipo==='ingreso'?'depositos':'retiros';
+  const monthIdx=getM(item.fecha);
+  const isComision=/comisi/i.test(item.concepto||'');
+  const targetMonth=isComision&&monthIdx<11?monthIdx+1:monthIdx;
+  const linkedSum=banco.filter(b=>b.matchTipo===tipo&&b.matchId===item.id).reduce((s,b)=>s+num(b[field]),0);
+  const remaining=num(item.total)-linkedSum;
+  const cands=banco.filter(b=>!b.matchId&&num(b[field])>0&&(allMonths||getM(b.fecha)===targetMonth))
+    .map(b=>({b,diff:Math.abs(num(b[field])-remaining)}))
+    .sort((a,b)=>a.diff-b.diff);
+  const link=async bancoId=>{await saveBanco(banco.map(b=>b.id===bancoId?{...b,matchTipo:tipo,matchId:item.id}:b));onClose();};
+  return(<div className="modal-bg" onClick={e=>{if(e.target===e.currentTarget)onClose();}}>
+    <div className="modal" style={{maxWidth:620}}>
+      <div style={{padding:'18px 20px',borderBottom:'1px solid var(--br)',display:'flex',justifyContent:'space-between',alignItems:'flex-start'}}>
+        <div><h4 style={{fontWeight:600,marginBottom:3}}>Conciliar factura</h4><p style={{fontSize:12,color:'var(--i2)'}}>{item.fecha} · {item.notas||item.concepto} · Falta <b>${mxn(remaining)}</b> ({tipo==='ingreso'?'→ Ingresos (depósito)':'→ Egresos (retiro)'})</p></div>
+        <button style={{background:'none',border:'none',fontSize:20,color:'var(--i3)'}} onClick={onClose}>×</button>
+      </div>
+      <div style={{padding:'12px 20px 0'}}>
+        <label style={{fontSize:12,color:'var(--i2)',display:'flex',alignItems:'center',gap:6}}><input type="checkbox" checked={allMonths} onChange={e=>setAllMonths(e.target.checked)}/>Buscar en todos los meses (por defecto solo busca en {MESES[targetMonth]}{isComision&&' — mes siguiente, las comisiones bancarias se devengan un mes antes de que el banco las cobre'})</label>
+      </div>
+      <div style={{padding:'12px 20px 18px',maxHeight:'50vh',overflowY:'auto',display:'flex',flexDirection:'column',gap:6}}>
+        {cands.length===0?<p style={{fontSize:12.5,color:'var(--i3)'}}>No hay movimientos de {tipo==='ingreso'?'Ingresos':'Egresos'} sin conciliar en este periodo.</p>
+        :cands.map(({b,diff})=>(
+          <div key={b.id} style={{display:'flex',justifyContent:'space-between',alignItems:'center',gap:10,padding:'8px 10px',borderRadius:8,border:'1px solid var(--br)'}}>
+            <div style={{minWidth:0}}>
+              <div style={{fontSize:12.5,fontWeight:500,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{b.concepto}</div>
+              <div style={{fontSize:11,color:'var(--i3)'}}>{b.fecha} · ${mxn(num(b[field]))} {diff<0.02&&<span className="badge bd-g" style={{marginLeft:6}}>Monto exacto</span>}</div>
+            </div>
+            <button className="btn-p" style={{fontSize:12,padding:'5px 12px',flexShrink:0}} onClick={()=>link(b.id)}>Vincular</button>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>);
+}
+
+/* ── IMPUESTOS (main) ── */
+const TAX_SECS=[
+  {id:'dash',   label:'Totales 2026',         phase:1},
+  {id:'isr',    label:'P.P. ISR',             phase:1},
+  {id:'iva',    label:'P.P. IVA',             phase:1},
+  {id:'ret_isr',label:'ISR Retenciones',      phase:1},
+  {id:'ret_iva',label:'IVA Retenciones',      phase:1},
+  {id:'ivafav', label:'Detalle IVA a Favor',  phase:1},
+  {id:'isrfav', label:'Detalle ISR a Favor',  phase:1},
+  {id:'inver',  label:'Edo. Cta. Inversión',  phase:1},
+  {id:'ing',    label:'Ingresos',             phase:1},
+  {id:'eg',     label:'Egresos',              phase:1},
+  {id:'xml_ing',label:'XML Ingresos',         phase:1},
+  {id:'xml_eg', label:'XML Egresos',          phase:1},
+];
+
+function ImpuestosApp(){
+  const [sec,setSec]=useState('dash');
+  const {ready}=useContext(TaxCtx);
+  const render=()=>{
+    if(sec==='dash') return <TaxDashboard/>;
+    if(sec==='isr')  return <TaxISR/>;
+    if(sec==='iva')  return <TaxIVA/>;
+    if(sec==='ret_isr') return <TaxRetISR/>;
+    if(sec==='ret_iva') return <TaxRetIVA/>;
+    if(sec==='ing')  return <TaxIngresos/>;
+    if(sec==='eg')   return <TaxEgresos/>;
+    if(sec==='xml_ing') return <TaxXmlIngresos/>;
+    if(sec==='xml_eg')  return <TaxXmlEgresos/>;
+    if(sec==='ivafav') return <FavorTable tipo="iva"/>;
+    if(sec==='isrfav') return <FavorTable tipo="isr"/>;
+    if(sec==='inver')  return <TaxInversion/>;
+    return null;
+  };
+  if(!ready)return <div style={{padding:32,color:'var(--i3)'}}>Cargando datos fiscales…</div>;
+  return(<div style={{display:'flex',gap:0,height:'100%'}}>
+    <div className="tsb">
+      <p style={{fontSize:10,fontWeight:700,letterSpacing:.8,color:'var(--i3)',textTransform:'uppercase',padding:'4px 9px 8px'}}>[NOMBRE DE LA EMPRESA]</p>
+      {TAX_SECS.map(s=>(
+        <button key={s.id} className={'tni'+(sec===s.id?' on':'')} onClick={()=>setSec(s.id)}>
+          <span style={{width:6,height:6,borderRadius:'50%',background:s.phase===2?'var(--br)':'var(--ac)',flexShrink:0}}/>
+          {s.label}
+          {s.phase===2&&<span style={{marginLeft:'auto',fontSize:9,color:'var(--i3)'}}>F2</span>}
+        </button>
+      ))}
+    </div>
+    <div style={{flex:1,minWidth:0,padding:'20px 18px',overflowY:'auto'}}>{render()}</div>
+  </div>);
+}
+function Impuestos(){return(<TaxProvider><ImpuestosApp/></TaxProvider>);}
+
+/* ── WORKSPACE (nav con la pestaña Papel de Trabajo Impuestos) ── */
+const WS_NAV=[{id:'papel_trabajo_impuestos',label:'Papel de Trabajo Impuestos',icon:'tax'}];
+function Workspace(){
+  const [act,setAct]=useState('papel_trabajo_impuestos');
+  return(<div className="app">
+    <nav className="sb" aria-label="Módulos">
+      <div style={{padding:'2px 10px 12px'}}><p style={{fontSize:14,fontWeight:600,color:'var(--ac)'}}>Workspace Martin Rendon</p></div>
+      {WS_NAV.map(s=>(<button key={s.id} className={'ni'+(act===s.id?' on':'')} onClick={()=>setAct(s.id)}><Ic n={s.icon}/>{s.label}</button>))}
+      <button className="btn-g" style={{marginTop:'auto',fontSize:11.5}} onClick={()=>sb.auth.signOut()}>Cerrar sesión</button>
+    </nav>
+    <main className="cnt">
+      {act==='papel_trabajo_impuestos'&&<div style={{display:'flex',height:'100%',minHeight:'100vh'}}><Impuestos/></div>}
+    </main>
+  </div>);
+}
+
+/* ── LOGIN ── */
+function Login(){
+  const [email,setEmail]=useState('');
+  const [pw,setPw]=useState('');
+  const [err,setErr]=useState('');
+  const [busy,setBusy]=useState(false);
+  const submit=async e=>{
+    e.preventDefault();setBusy(true);setErr('');
+    const {error}=await sb.auth.signInWithPassword({email,password:pw});
+    setBusy(false);
+    if(error)setErr(error.message);
+  };
+  return(<div style={{display:'flex',minHeight:'100vh',alignItems:'center',justifyContent:'center'}}>
+    <form onSubmit={submit} className="card" style={{width:320,display:'flex',flexDirection:'column',gap:12}}>
+      <h3>Workspace contable — Impuestos</h3>
+      {err&&<p style={{color:'var(--r)',fontSize:12.5}}>{err}</p>}
+      <input className="inp" type="email" placeholder="Correo" value={email} onChange={e=>setEmail(e.target.value)} required/>
+      <input className="inp" type="password" placeholder="Contraseña" value={pw} onChange={e=>setPw(e.target.value)} required/>
+      <button className="btn-p" disabled={busy}>{busy?'Entrando…':'Entrar'}</button>
+    </form>
+  </div>);
+}
+function AuthGate(){
+  const [session,setSession]=useState(undefined);
+  useEffect(()=>{
+    sb.auth.getSession().then(({data})=>setSession(data.session));
+    const {data:sub}=sb.auth.onAuthStateChange((_e,s)=>setSession(s));
+    return ()=>sub.subscription.unsubscribe();
+  },[]);
+  if(session===undefined)return <div style={{padding:32,color:'var(--i3)'}}>Cargando…</div>;
+  if(!session)return <Login/>;
+  return <Workspace/>;
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<AuthGate/>);
+</script>
